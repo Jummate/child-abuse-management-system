@@ -41,12 +41,12 @@ body {
   width: 100%;
 }
 
-.inner-container {
+#inner-container {
   /* min-height: 100vh; */
   /* background-color: var(--maroon); */
 }
 
-.reporting-header {
+#reporting-header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -60,14 +60,14 @@ body {
 }
 
 /* Navigation --------------------------------------------------------------------------------------------------*/
-.nav {
+#reporting-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 25px;
 }
-.nav__link {
+#reporting-nav-link {
   /* display: flex; */
   align-items: center;
   justify-content: center;
@@ -77,16 +77,16 @@ body {
   display: none;
 }
 
-.nav__link li {
+#reporting-nav-link li {
   list-style: none;
 }
 
-.nav__link a {
+#reporting-nav-link a {
   text-decoration: none;
   color: var(--aqua);
 }
 
-.nav__link a:hover {
+#reporting-nav-link a:hover {
   color: var(--lighter-slate);
 }
 
@@ -98,34 +98,43 @@ body {
   outline: none;
   cursor: pointer;
 }
+.btn a {
+  text-decoration: none;
+  color: inherit;
+}
 
-#btn__read-more {
+#btn-read-more {
   border: 1px solid var(--aqua);
   background: transparent;
   color: var(--aqua);
 }
 
-#btn__report-case {
+#btn-report-case {
   color: var(--white);
   background-color: var(--aqua);
   background-color: #791111;
   box-shadow: 2px 2px 4px var(--black), -2px -2px 4px var(--black);
 }
 
-#btn-admin-login {
+.btn-admin-login {
   border: 1px solid var(--aqua);
   background: transparent;
   color: var(--aqua);
   /* color: slategray; */
 }
 
-#btn-admin-login:hover {
+.btn-admin-login:hover {
+  color: var(--black);
+  background-color: var(--aqua);
+}
+
+#btn-read-more:hover {
   color: var(--black);
   background-color: var(--aqua);
 }
 
 /* Reporting Footer -----------------------------------------------------------------------------------*/
-.reporting-footer {
+#reporting-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -148,7 +157,7 @@ body {
 
 /*     MENU FOR MOBILE DEVICES */
 
-#menu__container {
+#menu-container {
   position: fixed;
   top: 0;
   right: 0;
@@ -163,23 +172,12 @@ body {
   font-family: var(--ff-mono);
 }
 
-#menu__icon-container {
+#menu-icon-container {
   display: flex;
   justify-content: flex-end;
 }
 
-#menu__container li {
-  list-style: none;
-}
-
-#menu__container a {
-  text-decoration: none;
-  color: var(--aqua);
-}
-
-#menu__link-wrapper {
-}
-#menu__link {
+#menu-link {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,8 +187,20 @@ body {
   cursor: pointer;
 }
 
-#menu__container a:hover {
+#menu-link li {
+  list-style: none;
+}
+
+#menu-link a {
+  text-decoration: none;
+  color: var(--aqua);
+}
+
+#menu-link a:hover {
   color: var(--lighter-slate);
+}
+
+#menu-link-wrapper {
 }
 
 #close-menu {
@@ -213,7 +223,7 @@ body {
   font-family: "Montserrat Alternates", sans-serif;
   padding: 100px 0;
 }
-.home__wrapper {
+#home-wrapper {
   width: 100%;
   padding: 0 15px;
   display: flex;
@@ -222,7 +232,7 @@ body {
   /* justify-content: center; */
   gap: 30px;
 }
-.home__wrapper h1 {
+#home-wrapper h1 {
   text-align: center;
   font-size: var(--fs-heading1);
   line-height: 1.7;
@@ -231,22 +241,24 @@ body {
   /* margin-bottom: 30px; */
 }
 
-.home__wrapper h3 {
+#home-wrapper h3 {
   text-align: center;
   font-size: var(--fs-heading2);
   line-height: 1.7;
   color: var(--slate);
 }
 
-.home__btn-container {
+#home-btn-container {
   display: flex;
   gap: 20px;
   align-self: center;
   font-family: var(--ff-sans);
 }
 
-#about {
-  display: none;
+#about,
+#admin-login,
+#reporting {
+  /* display: none; */
   min-height: 100vh;
 
   background-color: red;
@@ -258,9 +270,11 @@ body {
 }
 #reporting {
   display: none;
+  background-color: blue;
 }
 #admin-login {
   display: none;
+  background-color: #791111;
 }
 
 /* Media Queries ------------------------------------------------------------------------------*/
@@ -269,7 +283,7 @@ body {
   #hamburger {
     display: none;
   }
-  .nav__link {
+  #reporting-nav-link {
     display: flex;
   }
   #home {

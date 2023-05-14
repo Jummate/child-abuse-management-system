@@ -38,52 +38,54 @@
   </head>
   <body>
     <main id="root">
-      <div class="inner-container">
+      <div id="inner-container">
         <section id="reporting-container">
-          <header class="reporting-header">
-            <nav class="nav">
-              <div class="nav__logo-container">
-                <h2 class="nav__logo">CAMS</h2>
+          <header id="reporting-header">
+            <nav id="reporting-nav">
+              <div id="reporting-nav-logo-container">
+                <h2 id="reporting-nav-logo">CAMS</h2>
               </div>
 
-              <div class="nav__link-container">
+              <div id="reporting-nav-link-container">
                 <i
                   class="fa fa-bars icon"
                   id="hamburger"
                 ></i>
-                <ul class="nav__link">
-                  <li><a href="">Home</a></li>
-                  <li><a href="">About</a></li>
+                <ul id="reporting-nav-link">
+                  <li><a href="#home">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <!-- <li class="goto-home">Home</li>
+                  <li class="goto-about">About</li> -->
                   <li>
-                    <button
-                      id="btn-admin-login"
-                      class="btn"
+                    <a href="#admin-login"
+                      ><button class="btn btn-admin-login">
+                        Sign In As Admin
+                      </button></a
                     >
-                      Sign In As Admin
-                    </button>
                   </li>
                 </ul>
               </div>
             </nav>
           </header>
-          <div class="reporting-body">
+          <div id="reporting-body">
             <!--         HOME           -->
             <section id="home">
-              <article class="home__wrapper">
+              <article id="home-wrapper">
                 <h1>CHILD ABUSE MANAGEMENT SYSTEM</h1>
                 <h3>Every child has a right to good life!</h3>
-                <div class="home__btn-container">
+                <div id="home-btn-container">
                   <button
+                    id="btn-read-more"
                     class="btn"
-                    id="btn__read-more"
                   >
-                    READ MORE
+                    <a href="#about">READ MORE</a>
                   </button>
+
                   <button
+                    id="btn-report-case"
                     class="btn"
-                    id="btn__report-case"
                   >
-                    REPORT A CASE
+                    <a href="#reporting">REPORT A CASE</a>
                   </button>
                 </div>
               </article>
@@ -91,35 +93,34 @@
 
             <!--     ABOUT       -->
             <section id="about">dhdhdhdh</section>
-            <section id="reporting"></section>
-            <section id="admin-login"></section>
+            <section id="reporting">This is reporting</section>
+            <section id="admin-login">This admin login page</section>
           </div>
 
           <!--        MENU ON MOBILE DEVICES      -->
-          <aside id="menu__container">
-            <div id="menu__icon-container">
+          <aside id="menu-container">
+            <div id="menu-icon-container">
               <i
                 class="fa fa-times icon"
                 id="close-menu"
               ></i>
             </div>
-            <div id="menu__link-wrapper">
-              <ul id="menu__link">
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
+            <div id="menu-link-wrapper">
+              <ul id="menu-link">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
                 <li>
-                  <button
-                    id="btn-admin-login"
-                    class="btn"
+                  <a href="#admin-login"
+                    ><button class="btn btn-admin-login">
+                      Sign In As Admin
+                    </button></a
                   >
-                    Sign In As Admin
-                  </button>
                 </li>
               </ul>
             </div>
           </aside>
 
-          <footer class="reporting-footer">gggg</footer>
+          <footer id="reporting-footer">gggg</footer>
         </section>
 
         <section id="dashboard"></section>
