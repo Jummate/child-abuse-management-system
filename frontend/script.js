@@ -17,6 +17,10 @@ window.addEventListener("click", (event) => {
     _("#reporting").style.display = "none";
     _("body").style.overflow = "hidden";
   }
+
+  if (target.classList.contains("link")) {
+    _("#menu-container").style.display = "none";
+  }
 });
 
 _("#btn-report-case").addEventListener("click", () => {
