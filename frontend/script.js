@@ -25,7 +25,7 @@ window.addEventListener("click", (event) => {
     case target.classList.contains("btn-admin-login"):
       _("#admin-login").style.display = "flex";
       _("#reporting").style.display = "none";
-      _("body").style.overflow = "hidden";
+      // _("body").style.overflow = "hidden";
       break;
     case target.classList.contains("link"):
       _("#menu-container").style.display = "none";
