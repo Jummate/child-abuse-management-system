@@ -30,13 +30,25 @@ window.addEventListener("click", (event) => {
     case target.classList.contains("link"):
       _("#menu-container").style.display = "none";
       break;
-    default:
-      _("body").style.overflow = "hidden";
+    // default:
+    // _("body").style.overflow = "scroll";
   }
 });
 
 _("#btn-report-case").addEventListener("click", () => {
-  _("#reporting").style.display = "block";
+  _("#reporting").style.display = "flex";
   _("#admin-login").style.display = "none";
+  // _("body").style.overflow = "hidden";
+});
+
+_("#add-perpetrator").addEventListener("click", () => {
+  _("#modal").style.display = "flex";
+
+  // _("#modal").style.overflow = "hidden";
   _("body").style.overflow = "hidden";
+});
+
+_(".modal-head .icon").addEventListener("click", () => {
+  _("#modal").style.display = "none";
+  _("body").style.overflow = "scroll";
 });
