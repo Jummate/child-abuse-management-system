@@ -133,6 +133,31 @@ body {
   background-color: var(--aqua);
 }
 
+.login {
+  width: 100%;
+  max-width: 200px;
+  background-color: var(--dark-aqua);
+  color: var(--aqua);
+}
+
+.login:hover {
+  opacity: 0.8;
+}
+
+/* -------------------- INPUT STYLES --------------------- */
+
+.input {
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: var(--dark-aqua);
+  font-family: var(--ff-sans);
+  letter-spacing: 0.9px;
+}
+
 /* Reporting Footer -----------------------------------------------------------------------------------*/
 #reporting-footer {
   position: fixed;
@@ -256,7 +281,6 @@ body {
 }
 
 #about,
-#admin-login,
 #reporting {
   /* display: none; */
   min-height: 100vh;
@@ -273,8 +297,29 @@ body {
   background-color: blue;
 }
 #admin-login {
-  display: none;
-  background-color: #791111;
+  min-height: 100vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#admin-login-form-container {
+  height: 100%;
+  min-height: 400px;
+  background-color: blue;
+}
+#admin-login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 200px;
+}
+#admin-login h1 {
+  font-family: var(--ff-sans);
+  color: var(--dark-aqua);
 }
 
 /* Media Queries ------------------------------------------------------------------------------*/

@@ -12,14 +12,26 @@ _("#close-menu").addEventListener("click", () => {
 
 window.addEventListener("click", (event) => {
   let target = event.target;
-  if (target.classList.contains("btn-admin-login")) {
-    _("#admin-login").style.display = "block";
-    _("#reporting").style.display = "none";
-    _("body").style.overflow = "hidden";
-  }
+  //   if (target.classList.contains("btn-admin-login")) {
+  //     _("#admin-login").style.display = "block";
+  //     _("#reporting").style.display = "none";
+  //     _("body").style.overflow = "hidden";
+  //   }
 
-  if (target.classList.contains("link")) {
-    _("#menu-container").style.display = "none";
+  //   if (target.classList.contains("link")) {
+  //     _("#menu-container").style.display = "none";
+  //   }
+  switch (true) {
+    case target.classList.contains("btn-admin-login"):
+      _("#admin-login").style.display = "flex";
+      _("#reporting").style.display = "none";
+      _("body").style.overflow = "hidden";
+      break;
+    case target.classList.contains("link"):
+      _("#menu-container").style.display = "none";
+      break;
+    default:
+      _("body").style.overflow = "hidden";
   }
 });
 
