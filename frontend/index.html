@@ -141,7 +141,7 @@
                       <label for="perpetrator-name">Name</label><br />
                       <input
                         type="text"
-                        class="input"
+                        class="input modal-field"
                         id="perpetrator-name"
                       />
                     </p>
@@ -149,7 +149,7 @@
                       <label for="perpetrator-age">Age</label><br />
                       <input
                         type="number"
-                        class="input"
+                        class="input modal-field"
                         id="perpetrator-age"
                       />
                     </p>
@@ -158,7 +158,7 @@
                       <select
                         name="perpetrator-gender"
                         id="perpetrator-gender"
-                        class="select"
+                        class="select modal-field"
                       >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -173,12 +173,16 @@
                         class="textarea"
                         rows="2"
                         cols="30"
-                      >
-                      </textarea>
+                      ></textarea>
                     </p>
                   </div>
                   <div class="modal-footer">
-                    <button class="btn">Save</button>
+                    <button
+                      class="btn"
+                      id="btn-save-perpetrator"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
@@ -221,8 +225,7 @@
                         class="textarea"
                         rows="2"
                         cols="30"
-                      >
-                      </textarea>
+                      ></textarea>
                     </p>
                   </div>
                 </fieldset>
@@ -265,8 +268,7 @@
                         class="textarea"
                         rows="2"
                         cols="30"
-                      >
-                      </textarea>
+                      ></textarea>
                     </p>
                   </div>
                 </fieldset>
@@ -291,20 +293,7 @@
                           <th>Contact Info</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>John Doe</td>
-                          <td>45</td>
-                          <td>+29</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Jane Doe</td>
-                          <td>31</td>
-                          <td>+2990</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="perpetratorTableBody"></tbody>
                     </table>
                   </div>
                   <!-- <div>
@@ -344,8 +333,7 @@
                         class="textarea"
                         rows="2"
                         cols="30"
-                      >
-                      </textarea>
+                      ></textarea>
                     </p>
                   </div> -->
                 </fieldset>
@@ -388,8 +376,7 @@
                         class="textarea"
                         rows="2"
                         cols="30"
-                      >
-                      </textarea>
+                      ></textarea>
                     </p>
                   </div>
                 </fieldset>
