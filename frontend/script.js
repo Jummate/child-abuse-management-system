@@ -45,13 +45,39 @@ _("#add-perpetrator").addEventListener("click", () => {
   _("#modal").style.display = "flex";
 
   // _("#modal").style.overflow = "hidden";
-  _("body").style.overflow = "hidden";
+  // _("body").style.overflow = "hidden";
 });
 
 _(".modal-head .icon").addEventListener("click", () => {
   _("#modal").style.display = "none";
   _("body").style.overflow = "scroll";
 });
+
+const collectCaseInfo = () => {
+  return {
+    abuseType: _("#abuse-type").value,
+    location: _("#location").value,
+    eventDate: _("#event-date").value,
+    otherInfo: _("#other-info").value,
+  };
+};
+const collectVictimInfo = () => {
+  return {
+    name: _("#victim-name").value,
+    age: _("#victim-age").value,
+    gender: _("#victim-gender").value,
+    contact: _("#victim-contact").value,
+  };
+};
+
+const collectReporterInfo = () => {
+  return {
+    name: _("#reporter-name").value,
+    age: _("#reporter-age").value,
+    gender: _("#reporter-gender").value,
+    contact: _("#reporter-contact").value,
+  };
+};
 
 const collectPerpertratorInfo = () => {
   return {
@@ -60,6 +86,18 @@ const collectPerpertratorInfo = () => {
     age: _("#perpetrator-age").value,
     gender: _("#perpetrator-gender").value,
     contact: _("#perpetrator-contact").value,
+  };
+};
+
+const collectGeneralCaseInfo = () => {
+  return {
+    ID: Date.now(),
+    data: {
+      case: collectCaseInfo(),
+      victim: collectVictimInfo(),
+      perpetrator: fetchPerpetratorInfo(),
+      reporter: collectReporterInfo(),
+    },
   };
 };
 
@@ -73,7 +111,7 @@ const savePerpetratorInfo = () => {
     sessionStorage.setItem("perpetrator", JSON.stringify(temp));
   }
   populateTable(fetchPerpetratorInfo());
-  clearModal();
+  clearFields(".modal-field");
   _("#modal").style.display = "none";
 };
 
@@ -96,8 +134,8 @@ const populateTable = (data) => {
   }
 };
 
-const clearModal = () => {
-  all(".modal-field").forEach((field) => (field.value = ""));
+const clearFields = (fields) => {
+  all(fields).forEach((field) => (field.value = ""));
 };
 
 const createNewRow = (obj, index) => {
@@ -113,5 +151,7 @@ const createNewRow = (obj, index) => {
 };
 
 _("#btn-submit-case").addEventListener("click", () => {
+  console.log(collectGeneralCaseInfo());
   sessionStorage.removeItem("perpetrator");
+  clearFields(".reporting-field");
 });

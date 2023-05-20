@@ -94,7 +94,7 @@ body {
 
 /* -------------BUTTON STYLES ---------------------------- */
 .btn {
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
   border: none;
   outline: none;
@@ -143,10 +143,13 @@ body {
   max-width: 200px;
   background-color: var(--dark-aqua);
   color: var(--aqua);
+  padding: 15px;
+  font-size: 1.5rem;
 }
 
 #add-perpetrator {
-  width: 120px;
+  padding: 10px 15px;
+  font-size: 1.3rem;
 }
 
 #login:hover,
@@ -420,7 +423,7 @@ body {
   color: var(--dark-aqua);
   font-size: 1.2rem;
 }
-.fieldset textarea {
+textarea {
   border: none;
   outline: none;
   width: 100%;
@@ -430,6 +433,7 @@ body {
   padding: 10px;
   color: var(--dark-aqua);
   font-family: var(--ff-sans);
+  font-size: var(--fs-para);
   letter-spacing: 0.9px;
 }
 .table-wrapper {
