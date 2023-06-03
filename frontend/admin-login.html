@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <!-- <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=Quicksand:wght@300&family=Secular+One&family=Montserrat+Alternates:wght@100;800&family=Saira:wght@100&family=Ysabeau:wght@200&family=Roboto+Mono:wght@200&family=Share+Tech+Mono&family=Ubuntu+Mono&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles.css"
+    />
+    <title>Admin Log In</title>
+  </head>
+  <body>
+    <section id="admin-login">
+      <header
+        id="reporting-header"
+        class="header"
+      >
+        <nav
+          id="reporting-nav"
+          class="nav"
+        >
+          <div id="reporting-nav-logo-container">
+            <h2 id="reporting-nav-logo"><a href="./index.html">CAMS</a></h2>
+          </div>
+
+          <div id="reporting-nav-link-container">
+            <i
+              class="fa fa-bars icon"
+              id="hamburger"
+            ></i>
+            <ul id="reporting-nav-link">
+              <li>
+                <a
+                  href="./index.html"
+                  class="link"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#about"
+                  class="link"
+                  >About</a
+                >
+              </li>
+
+              <!-- <li>
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link">
+                    Sign In As Admin
+                  </button></a
+                >
+              </li> -->
+
+              <!-- <li>
+                <a href=""
+                  ><button class="btn btn-admin-login link">Sign Out</button></a
+                >
+              </li> -->
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- <section class="admin-login-body"> -->
+      <h1>ADMIN</h1>
+      <form
+        action=""
+        name="admin-login"
+        method="post"
+      >
+        <input
+          type="text"
+          class="input"
+          id="username"
+          name="username"
+          placeholder="username"
+        />
+        <input
+          type="password"
+          class="input"
+          id="password"
+          placeholder="password"
+          name="password"
+        />
+        <button
+          type="submit"
+          class="btn"
+          id="login"
+          name="login"
+        >
+          Sign In
+        </button>
+        <!-- <a href="./dashboard.html"
+          ><button
+            type="button"
+            class="btn"
+            id="login"
+            name="login"
+          >
+            Sign In
+          </button></a
+        > -->
+      </form>
+      <!-- </section> -->
+
+      <!--        MENU ON MOBILE DEVICES      -->
+      <aside id="menu-container">
+        <div id="menu-icon-container">
+          <i
+            class="fa fa-times icon"
+            id="close-menu"
+          ></i>
+        </div>
+        <div id="menu-link-wrapper">
+          <ul id="menu-link">
+            <li>
+              <a
+                href="./index.html"
+                class="link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./index.html#about"
+                class="link"
+                >About</a
+              >
+            </li>
+            <!-- <li>
+              <a href="./admin-login.html"
+                ><button class="btn btn-admin-login link">Sign In</button></a
+              >
+            </li> -->
+            <!-- <li>
+              <a href=""
+                ><button class="btn btn-admin-login link">Sign Out</button></a
+              >
+            </li> -->
+          </ul>
+        </div>
+        <footer id="reporting-footer">
+          <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+        </footer>
+      </aside>
+      <footer
+        id="reporting-footer"
+        class="admin-login-footer"
+      >
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
+    </section>
+    <script src="./admin-login.js"></script>
+  </body>
+</html>

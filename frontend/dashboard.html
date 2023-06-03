@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"
+    ></script>
+    <link
+      href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link
+      rel="stylesheet"
+      href="./styles.css"
+    />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <section id="reporting">
+      <header
+        id="reporting-header"
+        class="header"
+      >
+        <nav
+          id="reporting-nav"
+          class="nav"
+        >
+          <div id="reporting-nav-logo-container">
+            <h2 id="reporting-nav-logo">
+              Welcome, <span id="admin-name">Admin</span>
+            </h2>
+          </div>
+
+          <div id="reporting-nav-link-container">
+            <i
+              class="fa fa-bars icon"
+              id="hamburger"
+            ></i>
+
+            <ul id="reporting-nav-link">
+              <li>
+                <a
+                  href="./index.html"
+                  class="link"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#about"
+                  class="link"
+                  >About</a
+                >
+              </li>
+
+              <!-- <li>
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link">
+                    Sign In As Admin
+                  </button></a
+                >
+              </li> -->
+
+              <li class="sign-out">
+                <a href="./index.html"
+                  ><button class="btn btn-admin-login link btn-sign-out">
+                    Sign Out
+                  </button></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main id="dashboard-body">
+        <div class="action-btn-container">
+          <select
+            name="export"
+            id="export"
+            class="select"
+          >
+            <option
+              value="Export"
+              disabled
+              selected
+            >
+              Export
+            </option>
+            <option value="csv">CSV</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <!-- <button
+              class="btn"
+              id="export-csv"
+            >
+              Export as CSV</button
+            ><button
+              class="btn"
+              id="export-pdf"
+            >
+              Export as PDF
+            </button> -->
+        </div>
+        <div id="table-container"></div>
+        <div id="chart-container">
+          <div id="mChart"></div>
+          <div id="yChart"></div>
+        </div>
+      </main>
+
+      <!--        MENU ON MOBILE DEVICES      -->
+      <aside id="menu-container">
+        <div id="menu-icon-container">
+          <i
+            class="fa fa-times icon"
+            id="close-menu"
+          ></i>
+        </div>
+        <div id="menu-link-wrapper">
+          <ul id="menu-link">
+            <li>
+              <a
+                href="./index.html"
+                class="link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./index.html#about"
+                class="link"
+                >About</a
+              >
+            </li>
+            <!-- <li>
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link">Sign In</button></a
+                >
+              </li> -->
+            <li class="sign-out">
+              <a href=""
+                ><button class="btn btn-admin-login link btn-sign-out">
+                  Sign Out
+                </button></a
+              >
+            </li>
+          </ul>
+        </div>
+        <footer id="reporting-footer">
+          <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+        </footer>
+      </aside>
+      <footer id="reporting-footer">
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
+    </section>
+    <script src="./dashboard.js"></script>
+  </body>
+</html>

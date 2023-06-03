@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles.css"
+    />
+    <title>Case Reporting</title>
+  </head>
+  <body>
+    <section id="reporting">
+      <header
+        id="reporting-header"
+        class="header"
+      >
+        <nav
+          id="reporting-nav"
+          class="nav"
+        >
+          <div id="reporting-nav-logo-container">
+            <h2 id="reporting-nav-logo"><a href="./index.html">CAMS</a></h2>
+          </div>
+
+          <div id="reporting-nav-link-container">
+            <i
+              class="fa fa-bars icon"
+              id="hamburger"
+            ></i>
+            <ul id="reporting-nav-link">
+              <li>
+                <a
+                  href="./index.html"
+                  class="link"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#about"
+                  class="link"
+                  >About</a
+                >
+              </li>
+              <li class="protected">
+                <a
+                  href="./dashboard.html"
+                  class="link"
+                  >Dashboard</a
+                >
+              </li>
+              <!-- <li class="goto-home">Home</li>
+                  <li class="goto-about">About</li> -->
+              <li class="sign-in">
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link btn-sign-in">
+                    Sign In
+                  </button></a
+                >
+              </li>
+
+              <li class="sign-out">
+                <a href=""
+                  ><button class="btn btn-admin-login link btn-sign-out">
+                    Sign Out
+                  </button></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div id="modal">
+        <div id="modal-wrapper">
+          <div class="modal-head">
+            <h3 class="modal-head-text">Add Perpetrator</h3>
+            <i class="fa fa-times icon"></i>
+          </div>
+          <div class="modal-body">
+            <div>
+              <label for="perpetrator-first-name">First Name</label><br />
+              <input
+                type="text"
+                class="input modal-field"
+                id="perpetrator-first-name"
+              />
+            </div>
+            <div>
+              <label for="perpetrator-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input modal-field"
+                id="perpetrator-last-name"
+              />
+            </div>
+            <div>
+              <label for="perpetrator-age">Age</label><br />
+              <input
+                type="number"
+                class="input modal-field"
+                id="perpetrator-age"
+              />
+            </div>
+            <div>
+              <label for="perpetrator-gender">Gender</label><br />
+              <select
+                name="perpetrator-gender"
+                id="perpetrator-gender"
+                class="select modal-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="perpetrator-contact">Contact Info</label><br />
+              <textarea
+                id="perpetrator-contact"
+                class="textarea modal-field"
+                rows="2"
+                cols="30"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn"
+              id="btn-save-perpetrator"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="reporting-page-container">
+        <fieldset class="fieldset">
+          <legend>Case Info</legend>
+          <div class="reporting-input-container">
+            <div>
+              <label for="abuse-type">Abuse Type</label><br />
+              <!-- <input
+                type="text"
+                class="input reporting-field"
+                id="abuse-type"
+              /> -->
+              <select
+                name="abuse-type"
+                id="abuse-type"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Emotional">Emotional</option>
+                <option value="Sexual">Sexual</option>
+                <option value="Neglect">Neglect</option>
+              </select>
+            </div>
+
+            <!-- <div>
+              <label for="location-state">Abuse Type</label><br />
+           
+              <select
+                name="abuse-type"
+                id="abuse-type"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Emotional">Emotional</option>
+                <option value="Sexual">Sexual</option>
+                <option value="Neglect">Neglect</option>
+              </select>
+            </div> -->
+
+            <div>
+              <label for="location">Location</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="location"
+              />
+            </div>
+
+            <div>
+              <label for="event-date">Event Date</label><br />
+              <input
+                type="date"
+                class="input reporting-field"
+                id="event-date"
+              />
+            </div>
+
+            <div>
+              <label for="other-info">Other Relevant Info</label><br />
+              <textarea
+                id="other-info"
+                class="textarea reporting-field"
+                rows="2"
+                cols="30"
+              ></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>Victim Info</legend>
+          <div class="reporting-input-container">
+            <div>
+              <label for="victim-first-name">First Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="victim-first-name"
+              />
+            </div>
+            <div>
+              <label for="victim-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="victim-last-name"
+              />
+            </div>
+            <div>
+              <label for="victim-age">Age</label><br />
+              <input
+                type="number"
+                class="input reporting-field"
+                id="victim-age"
+              />
+            </div>
+            <div>
+              <label for="victim-gender">Gender</label><br />
+              <select
+                name="victim-gender"
+                id="victim-gender"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="victim-contact">Contact Info</label><br />
+              <textarea
+                id="victim-contact"
+                class="textarea reporting-field"
+                rows="2"
+                cols="30"
+              ></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="fieldset">
+          <legend>Perpetrator Info</legend>
+          <div id="add-perpetrator-container">
+            <button
+              class="btn"
+              id="add-perpetrator"
+            >
+              <i class="fa fa-plus"></i>
+              Add Perpetrator
+            </button>
+          </div>
+          <!-- <div class="inn"> -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Contact Info</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="perpetratorTableBody"></tbody>
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <fieldset class="fieldset">
+          <legend>Reporter Info</legend>
+          <div class="reporting-input-container">
+            <div>
+              <label for="reporter-first-name">First Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="reporter-first-name"
+              />
+            </div>
+            <div>
+              <label for="reporter-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="reporter-last-name"
+              />
+            </div>
+            <div>
+              <label for="reporter-age">Age</label><br />
+              <input
+                type="number"
+                class="input reporting-field"
+                id="reporter-age"
+              />
+            </div>
+            <div>
+              <label for="reporter-gender">Gender</label><br />
+              <select
+                name="reporter-gender"
+                id="reporter-gender"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="reporter-contact">Contact Info</label><br />
+              <textarea
+                id="reporter-contact"
+                class="textarea reporting-field"
+                rows="2"
+                cols="30"
+              ></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div id="submit-case-container">
+          <button
+            type="button"
+            class="btn"
+            id="btn-submit-case"
+          >
+            SUBMIT
+          </button>
+        </div>
+        <!-- <div
+            id="case-info"
+            class="reporting-item"
+          >
+            hhhh
+          </div>
+          <div
+            id="case-info"
+            class="reporting-item"
+          ></div> -->
+      </div>
+      <aside id="menu-container">
+        <div id="menu-icon-container">
+          <i
+            class="fa fa-times icon"
+            id="close-menu"
+          ></i>
+        </div>
+        <div id="menu-link-wrapper">
+          <ul id="menu-link">
+            <li>
+              <a
+                href="./index.html"
+                class="link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./index.html#about"
+                class="link"
+                >About</a
+              >
+            </li>
+            <li class="protected">
+              <a
+                href="./dashboard.html"
+                class="link"
+                >Dashboard</a
+              >
+            </li>
+            <li class="sign-in">
+              <a href="./admin-login.html"
+                ><button class="btn btn-admin-login link btn-sign-in">
+                  Sign In
+                </button></a
+              >
+            </li>
+            <li class="sign-out">
+              <a href=""
+                ><button class="btn btn-admin-login link btn-sign-out">
+                  Sign Out
+                </button></a
+              >
+            </li>
+          </ul>
+        </div>
+        <footer id="reporting-footer">
+          <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+        </footer>
+      </aside>
+      <footer id="reporting-footer">
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
+    </section>
+    <script src="./case-report.js"></script>
+  </body>
+</html>
