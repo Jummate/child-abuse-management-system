@@ -1,8 +1,9 @@
 const BASE_URL = "http://localhost/child-abuse-management-system/src";
-const _ = (elem) => document.querySelector(elem);
-const all = (elements) => document.querySelectorAll(elements);
 const DASHBOARD_URL = `${BASE_URL}/frontend/dashboard.html`;
 const LOGIN_URL = `${BASE_URL}/backend/auth/login.php`;
+
+const _ = (elem) => document.querySelector(elem);
+const all = (elements) => document.querySelectorAll(elements);
 
 _("#hamburger").addEventListener("click", () => {
   _("#menu-container").style.display = "flex";
@@ -28,26 +29,18 @@ const testUrl = (event) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          window.location.href = DASHBOARD_URL;
+          sessionStorage.setItem("isLoggedIn", true);
+          window.location.href = document.referrer.includes("case-report")
+            ? document.referrer
+            : DASHBOARD_URL;
         } else {
+          sessionStorage.removeItem("isLoggedIn");
           throw new Error(data.message);
         }
       })
       .catch((error) => {
         console.error(error);
       });
-
-    // .then((response) => {
-    //   if (!response.ok) {
-    //     throw new Error(response.code);
-    //   }
-    //   return response.json();
-    // })
-    // .then((data) => console.log(data))
-    // .catch((error) => {
-    //   console.error(error);
-    //   document.getElementById("error").innerHTML = error.message;
-    // });
   }
 };
 

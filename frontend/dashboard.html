@@ -42,24 +42,59 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <section id="dashboard">
+    <section id="reporting">
       <header
-        id="dashboard-header"
+        id="reporting-header"
         class="header"
       >
         <nav
-          id="dashboard-nav"
+          id="reporting-nav"
           class="nav"
         >
-          <div id="dashboard-nav-logo-container">
-            <h2 id="dashboard-nav-logo">Welcome <span>Admin</span></h2>
+          <div id="reporting-nav-logo-container">
+            <h2 id="reporting-nav-logo">
+              Welcome, <span id="admin-name">Admin</span>
+            </h2>
           </div>
 
-          <div id="dashboard-nav-link-container">
+          <div id="reporting-nav-link-container">
             <i
               class="fa fa-bars icon"
-              id="dashboard-hamburger"
+              id="hamburger"
             ></i>
+
+            <ul id="reporting-nav-link">
+              <li>
+                <a
+                  href="./index.html"
+                  class="link"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#about"
+                  class="link"
+                  >About</a
+                >
+              </li>
+
+              <!-- <li>
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link">
+                    Sign In As Admin
+                  </button></a
+                >
+              </li> -->
+
+              <li class="sign-out">
+                <a href="./index.html"
+                  ><button class="btn btn-admin-login link btn-sign-out">
+                    Sign Out
+                  </button></a
+                >
+              </li>
+            </ul>
           </div>
         </nav>
       </header>
@@ -98,7 +133,53 @@
           <div id="yChart"></div>
         </div>
       </main>
-      <script src="./dashboard.js"></script>
+
+      <!--        MENU ON MOBILE DEVICES      -->
+      <aside id="menu-container">
+        <div id="menu-icon-container">
+          <i
+            class="fa fa-times icon"
+            id="close-menu"
+          ></i>
+        </div>
+        <div id="menu-link-wrapper">
+          <ul id="menu-link">
+            <li>
+              <a
+                href="./index.html"
+                class="link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./index.html#about"
+                class="link"
+                >About</a
+              >
+            </li>
+            <!-- <li>
+                <a href="./admin-login.html"
+                  ><button class="btn btn-admin-login link">Sign In</button></a
+                >
+              </li> -->
+            <li class="sign-out">
+              <a href=""
+                ><button class="btn btn-admin-login link btn-sign-out">
+                  Sign Out
+                </button></a
+              >
+            </li>
+          </ul>
+        </div>
+        <footer id="reporting-footer">
+          <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+        </footer>
+      </aside>
+      <footer id="reporting-footer">
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
     </section>
+    <script src="./dashboard.js"></script>
   </body>
 </html>

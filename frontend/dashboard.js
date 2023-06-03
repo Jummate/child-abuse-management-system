@@ -1,5 +1,7 @@
+const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
+const HOME_URL = `${BASE_URL}/frontend/`;
 const _ = (elem) => document.querySelector(elem);
-
 const all = (elements) => document.querySelectorAll(elements);
 
 // _("#login").addEventListener("click", (e) => {
@@ -7,6 +9,31 @@ const all = (elements) => document.querySelectorAll(elements);
 //   // _("#reporting-container").style.display = "none";
 //   _("#dashboard").style.display = "flex";
 // });
+
+[...all(".sign-out")].forEach((elem) => (elem.style.display = "initial"));
+
+_("#hamburger").addEventListener("click", () => {
+  _("#menu-container").style.display = "flex";
+});
+
+_("#close-menu").addEventListener("click", () => {
+  _("#menu-container").style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  let target = event.target;
+  if (target.classList.contains("btn-sign-out")) {
+    event.preventDefault();
+    sessionStorage.removeItem("isLoggedIn");
+    window.location.href = HOME_URL;
+  }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (!sessionStorage.getItem("isLoggedIn")) {
+    window.location.href = ADMIN_LOGIN_URL;
+  }
+});
 
 var options = {
   chart: {
@@ -156,25 +183,29 @@ const table = new Tabulator("#table-container", {
 });
 
 _("#export").addEventListener("change", () => {
-  console.log(_("#export").value);
-  switch (_("#export").value) {
-    case "csv":
-      table.download("csv", "data.csv");
-      break;
-    case "pdf":
-      table.downloadToTab("pdf");
-      break;
+  console.log("dhasahahahh");
+  if (sessionStorage.getItem("isLoggedIn")) {
+    switch (_("#export").value) {
+      case "csv":
+        table.download("csv", "data.csv");
+        break;
+      case "pdf":
+        table.downloadToTab("pdf");
+        break;
+    }
+  } else {
+    window.location.href = ADMIN_LOGIN_URL;
   }
 });
 
-table.on("dataLoaded", function (data) {
-  if (sessionStorage.hasOwnProperty("loadOnce")) {
-    _("#dashboard").style.display = "flex";
-  } else {
-    sessionStorage.setItem("loadOnce", true);
-    _("#dashboard").style.display = "none";
-  }
-});
+// table.on("dataLoaded", function (data) {
+//   if (sessionStorage.hasOwnProperty("loadOnce")) {
+//     _("#dashboard").style.display = "flex";
+//   } else {
+//     sessionStorage.setItem("loadOnce", true);
+//     _("#dashboard").style.display = "none";
+//   }
+// });
 
 //trigger an alert message when the row is clicked
 //   table.on("rowClick", function (e, row) {

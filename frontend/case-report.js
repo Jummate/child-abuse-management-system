@@ -1,3 +1,6 @@
+const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
+const HOME_URL = `${BASE_URL}/frontend/`;
 const _ = (elem) => document.querySelector(elem);
 
 const all = (elements) => document.querySelectorAll(elements);
@@ -15,6 +18,33 @@ _("#add-perpetrator").addEventListener("click", () => {
 
   // _("#modal").style.overflow = "hidden";
   // _("body").style.overflow = "hidden";
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem("isLoggedIn")) {
+    [...all(".sign-out")].forEach((elem) => (elem.style.display = "initial"));
+    [...all(".sign-in")].forEach((elem) => (elem.style.display = "none"));
+    [...all(".protected")].forEach((elem) => (elem.style.display = "initial"));
+  } else {
+    [...all(".sign-out")].forEach((elem) => (elem.style.display = "none"));
+    [...all(".sign-in")].forEach((elem) => (elem.style.display = "initial"));
+    [...all(".protected")].forEach((elem) => (elem.style.display = "none"));
+  }
+  if (sessionStorage.hasOwnProperty("perpetrator")) {
+    populateTable(fetchPerpetratorInfo());
+  }
+});
+
+window.addEventListener("click", (event) => {
+  // event.preventDefault();
+  let target = event.target;
+  if (target.classList.contains("btn-sign-out")) {
+    sessionStorage.removeItem("isLoggedIn");
+    [...all(".sign-out")].forEach((elem) => (elem.style.display = "none"));
+    [...all(".sign-in")].forEach((elem) => (elem.style.display = "initial"));
+    [...all(".protected")].forEach((elem) => (elem.style.display = "none"));
+    window.location.href = HOME_URL;
+  }
 });
 
 _(".modal-head .icon").addEventListener("click", () => {
@@ -48,7 +78,8 @@ const createNewRow = (obj, index) => {
   newRow.classList.add("table-row");
   newRow.setAttribute("data-id", obj.ID);
   newRow.innerHTML += `<td>${index + 1}</td>`;
-  newRow.innerHTML += `<td>${obj.name}</td>`;
+  newRow.innerHTML += `<td>${obj.fname}</td>`;
+  newRow.innerHTML += `<td>${obj.lname}</td>`;
   newRow.innerHTML += `<td>${obj.age}</td>`;
   newRow.innerHTML += `<td>${obj.contact}</td>`;
 
@@ -65,7 +96,8 @@ const collectCaseInfo = () => {
 };
 const collectVictimInfo = () => {
   return {
-    name: _("#victim-name").value,
+    fname: _("#victim-first-name").value,
+    lname: _("#victim-last-name").value,
     age: _("#victim-age").value,
     gender: _("#victim-gender").value,
     contact: _("#victim-contact").value,
@@ -74,7 +106,8 @@ const collectVictimInfo = () => {
 
 const collectReporterInfo = () => {
   return {
-    name: _("#reporter-name").value,
+    fname: _("#reporter-first-name").value,
+    lname: _("#reporter-last-name").value,
     age: _("#reporter-age").value,
     gender: _("#reporter-gender").value,
     contact: _("#reporter-contact").value,
@@ -84,7 +117,8 @@ const collectReporterInfo = () => {
 const collectPerpertratorInfo = () => {
   return {
     ID: Date.now(),
-    name: _("#perpetrator-name").value,
+    fname: _("#perpetrator-first-name").value,
+    lname: _("#perpetrator-last-name").value,
     age: _("#perpetrator-age").value,
     gender: _("#perpetrator-gender").value,
     contact: _("#perpetrator-contact").value,

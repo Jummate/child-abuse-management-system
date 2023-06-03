@@ -57,19 +57,28 @@
                   >About</a
                 >
               </li>
+              <li class="protected">
+                <a
+                  href="./dashboard.html"
+                  class="link"
+                  >Dashboard</a
+                >
+              </li>
               <!-- <li class="goto-home">Home</li>
                   <li class="goto-about">About</li> -->
-              <li>
+              <li class="sign-in">
                 <a href="./admin-login.html"
-                  ><button class="btn btn-admin-login link">
-                    Sign In As Admin
+                  ><button class="btn btn-admin-login link btn-sign-in">
+                    Sign In
                   </button></a
                 >
               </li>
 
-              <li>
+              <li class="sign-out">
                 <a href=""
-                  ><button class="btn btn-admin-login link">Sign Out</button></a
+                  ><button class="btn btn-admin-login link btn-sign-out">
+                    Sign Out
+                  </button></a
                 >
               </li>
             </ul>
@@ -83,23 +92,31 @@
             <i class="fa fa-times icon"></i>
           </div>
           <div class="modal-body">
-            <p>
-              <label for="perpetrator-name">Name</label><br />
+            <div>
+              <label for="perpetrator-first-name">First Name</label><br />
               <input
                 type="text"
                 class="input modal-field"
-                id="perpetrator-name"
+                id="perpetrator-first-name"
               />
-            </p>
-            <p>
+            </div>
+            <div>
+              <label for="perpetrator-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input modal-field"
+                id="perpetrator-last-name"
+              />
+            </div>
+            <div>
               <label for="perpetrator-age">Age</label><br />
               <input
                 type="number"
                 class="input modal-field"
                 id="perpetrator-age"
               />
-            </p>
-            <p>
+            </div>
+            <div>
               <label for="perpetrator-gender">Gender</label><br />
               <select
                 name="perpetrator-gender"
@@ -114,17 +131,17 @@
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-            </p>
+            </div>
 
-            <p>
+            <div>
               <label for="perpetrator-contact">Contact Info</label><br />
               <textarea
                 id="perpetrator-contact"
-                class="textarea"
+                class="textarea modal-field"
                 rows="2"
                 cols="30"
               ></textarea>
-            </p>
+            </div>
           </div>
           <div class="modal-footer">
             <button
@@ -140,65 +157,106 @@
         <fieldset class="fieldset">
           <legend>Case Info</legend>
           <div class="reporting-input-container">
-            <p>
+            <div>
               <label for="abuse-type">Abuse Type</label><br />
-              <input
+              <!-- <input
                 type="text"
                 class="input reporting-field"
                 id="abuse-type"
-              />
-            </p>
+              /> -->
+              <select
+                name="abuse-type"
+                id="abuse-type"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Emotional">Emotional</option>
+                <option value="Sexual">Sexual</option>
+                <option value="Neglect">Neglect</option>
+              </select>
+            </div>
 
-            <p>
+            <!-- <div>
+              <label for="location-state">Abuse Type</label><br />
+           
+              <select
+                name="abuse-type"
+                id="abuse-type"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Emotional">Emotional</option>
+                <option value="Sexual">Sexual</option>
+                <option value="Neglect">Neglect</option>
+              </select>
+            </div> -->
+
+            <div>
               <label for="location">Location</label><br />
               <input
                 type="text"
                 class="input reporting-field"
                 id="location"
               />
-            </p>
+            </div>
 
-            <p>
-              <label for="event-date">Date of Event</label><br />
+            <div>
+              <label for="event-date">Event Date</label><br />
               <input
                 type="date"
                 class="input reporting-field"
                 id="event-date"
               />
-            </p>
+            </div>
 
-            <p>
-              <label for="other-info">Other Relevant Details</label><br />
+            <div>
+              <label for="other-info">Other Relevant Info</label><br />
               <textarea
                 id="other-info"
                 class="textarea reporting-field"
                 rows="2"
                 cols="30"
               ></textarea>
-            </p>
+            </div>
           </div>
         </fieldset>
 
         <fieldset class="fieldset">
           <legend>Victim Info</legend>
           <div class="reporting-input-container">
-            <p>
-              <label for="victim-name">Name</label><br />
+            <div>
+              <label for="victim-first-name">First Name</label><br />
               <input
                 type="text"
                 class="input reporting-field"
-                id="victim-name"
+                id="victim-first-name"
               />
-            </p>
-            <p>
+            </div>
+            <div>
+              <label for="victim-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="victim-last-name"
+              />
+            </div>
+            <div>
               <label for="victim-age">Age</label><br />
               <input
                 type="number"
                 class="input reporting-field"
                 id="victim-age"
               />
-            </p>
-            <p>
+            </div>
+            <div>
               <label for="victim-gender">Gender</label><br />
               <select
                 name="victim-gender"
@@ -213,9 +271,9 @@
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-            </p>
+            </div>
 
-            <p>
+            <div>
               <label for="victim-contact">Contact Info</label><br />
               <textarea
                 id="victim-contact"
@@ -223,7 +281,7 @@
                 rows="2"
                 cols="30"
               ></textarea>
-            </p>
+            </div>
           </div>
         </fieldset>
 
@@ -238,81 +296,53 @@
               Add Perpetrator
             </button>
           </div>
-          <div class="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Contact Info</th>
-                </tr>
-              </thead>
-              <tbody id="perpetratorTableBody"></tbody>
-            </table>
+          <div class="">
+            <div class="table-wrapper">
+              <small>(Click any item to edit or delete)</small>
+              <table>
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Contact Info</th>
+                  </tr>
+                </thead>
+                <tbody id="perpetratorTableBody"></tbody>
+              </table>
+            </div>
           </div>
-          <!-- <div>
-              <p>
-                <label for="perpetrator-name">Name</label><br />
-                <input
-                  type="text"
-                  class="input"
-                  id="perpetrator-name"
-                />
-              </p>
-              <p>
-                <label for="perpetrator-age">Age</label><br />
-                <input
-                  type="number"
-                  class="input"
-                  id="perpetrator-age"
-                />
-              </p>
-              <p>
-                <label for="perpetrator-gender">Gender</label><br />
-                <select
-                  name="perpetrator-gender"
-                  id="perpetrator-gender"
-                  class="select"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </p>
-
-              <p>
-                <label for="perpetrator-contact">Contact Info</label
-                ><br />
-                <textarea
-                  id="perpetrator-contact"
-                  class="textarea"
-                  rows="2"
-                  cols="30"
-                ></textarea>
-              </p>
-            </div> -->
         </fieldset>
 
         <fieldset class="fieldset">
           <legend>Reporter Info</legend>
           <div class="reporting-input-container">
-            <p>
-              <label for="reporter-name">Name</label><br />
+            <div>
+              <label for="reporter-first-name">First Name</label><br />
               <input
                 type="text"
                 class="input reporting-field"
-                id="reporter-name"
+                id="reporter-first-name"
               />
-            </p>
-            <p>
+            </div>
+            <div>
+              <label for="reporter-last-name">Last Name</label><br />
+              <input
+                type="text"
+                class="input reporting-field"
+                id="reporter-last-name"
+              />
+            </div>
+            <div>
               <label for="reporter-age">Age</label><br />
               <input
                 type="number"
                 class="input reporting-field"
                 id="reporter-age"
               />
-            </p>
-            <p>
+            </div>
+            <div>
               <label for="reporter-gender">Gender</label><br />
               <select
                 name="reporter-gender"
@@ -327,9 +357,9 @@
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-            </p>
+            </div>
 
-            <p>
+            <div>
               <label for="reporter-contact">Contact Info</label><br />
               <textarea
                 id="reporter-contact"
@@ -337,7 +367,7 @@
                 rows="2"
                 cols="30"
               ></textarea>
-            </p>
+            </div>
           </div>
         </fieldset>
 
@@ -384,21 +414,36 @@
                 >About</a
               >
             </li>
-            <li>
+            <li class="protected">
+              <a
+                href="./dashboard.html"
+                class="link"
+                >Dashboard</a
+              >
+            </li>
+            <li class="sign-in">
               <a href="./admin-login.html"
-                ><button class="btn btn-admin-login link">
-                  Sign In As Admin
+                ><button class="btn btn-admin-login link btn-sign-in">
+                  Sign In
                 </button></a
               >
             </li>
-            <li>
+            <li class="sign-out">
               <a href=""
-                ><button class="btn btn-admin-login link">Sign Out</button></a
+                ><button class="btn btn-admin-login link btn-sign-out">
+                  Sign Out
+                </button></a
               >
             </li>
           </ul>
         </div>
+        <footer id="reporting-footer">
+          <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+        </footer>
       </aside>
+      <footer id="reporting-footer">
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
     </section>
     <script src="./case-report.js"></script>
   </body>
