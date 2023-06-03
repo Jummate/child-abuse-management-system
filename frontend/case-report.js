@@ -5,6 +5,9 @@ const _ = (elem) => document.querySelector(elem);
 
 const all = (elements) => document.querySelectorAll(elements);
 
+let isEditIconClicked = false;
+let idOfRecordToEdit;
+
 _("#hamburger").addEventListener("click", () => {
   _("#menu-container").style.display = "flex";
 });
@@ -15,9 +18,8 @@ _("#close-menu").addEventListener("click", () => {
 
 _("#add-perpetrator").addEventListener("click", () => {
   _("#modal").style.display = "flex";
-
-  // _("#modal").style.overflow = "hidden";
-  // _("body").style.overflow = "hidden";
+  _(".modal-head-text").textContent = "Add Perpetrator";
+  clearFields(".modal-field");
 });
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -31,6 +33,34 @@ window.addEventListener("DOMContentLoaded", () => {
     [...all(".protected")].forEach((elem) => (elem.style.display = "none"));
   }
   if (sessionStorage.hasOwnProperty("perpetrator")) {
+    populateTable(fetchPerpetratorInfo());
+  }
+});
+
+_("#perpetratorTableBody").addEventListener("click", (event) => {
+  let target = event.target;
+
+  if (target.classList.contains("edit-info")) {
+    isEditIconClicked = true;
+    _("#modal").style.display = "flex";
+    _(".modal-head-text").textContent = "Edit Perpetrator Info";
+    idOfRecordToEdit = target.getAttribute("data-id");
+    let recordToEdit = JSON.parse(sessionStorage.getItem("perpetrator")).find(
+      (item) => Number(item.ID) === Number(idOfRecordToEdit)
+    );
+
+    _("#perpetrator-first-name").value = recordToEdit.fname;
+    _("#perpetrator-last-name").value = recordToEdit.lname;
+    _("#perpetrator-age").value = recordToEdit.age;
+    _("#perpetrator-gender").value = recordToEdit.gender;
+    _("#perpetrator-contact").value = recordToEdit.contact;
+  } else if (target.classList.contains("delete-info")) {
+    let idOfRecordToDelete = target.getAttribute("data-id");
+    const filteredRecords = JSON.parse(
+      sessionStorage.getItem("perpetrator")
+    ).filter((item) => Number(item.ID) !== Number(idOfRecordToDelete));
+    sessionStorage.setItem("perpetrator", JSON.stringify(filteredRecords));
+
     populateTable(fetchPerpetratorInfo());
   }
 });
@@ -63,7 +93,7 @@ const fetchPerpetratorInfo = () => {
 const populateTable = (data) => {
   if (data) {
     _("#perpetratorTableBody").innerHTML = "";
-    data.forEach((item, index) => {
+    data.reverse().forEach((item, index) => {
       _("#perpetratorTableBody").appendChild(createNewRow(item, index));
     });
   }
@@ -81,7 +111,10 @@ const createNewRow = (obj, index) => {
   newRow.innerHTML += `<td>${obj.fname}</td>`;
   newRow.innerHTML += `<td>${obj.lname}</td>`;
   newRow.innerHTML += `<td>${obj.age}</td>`;
+  newRow.innerHTML += `<td>${obj.gender}</td>`;
   newRow.innerHTML += `<td>${obj.contact}</td>`;
+  newRow.innerHTML += `<td><span class='fa fa-edit edit-info' data-id=${obj.ID}><span></td>`;
+  newRow.innerHTML += `<td><span class='fa fa-trash delete-info' data-id=${obj.ID}><span></td>`;
 
   return newRow;
 };
@@ -137,8 +170,25 @@ const collectGeneralCaseInfo = () => {
   };
 };
 
+const saveEditedPerpetratorInfo = (recordID) => {
+  let temp = JSON.parse(sessionStorage.getItem("perpetrator"));
+  let perpetratorInfo = collectPerpertratorInfo();
+  const x = temp.findIndex((item) => Number(item.ID) === Number(recordID));
+
+  perpetratorInfo = { ...perpetratorInfo, ID: recordID };
+  temp.splice(x, 1, perpetratorInfo);
+  // temp = temp.filter((item) => Number(item.ID) !== Number(recordID));
+  // temp.push(perpetratorInfo);
+  sessionStorage.setItem("perpetrator", JSON.stringify(temp));
+
+  populateTable(fetchPerpetratorInfo());
+  clearFields(".modal-field");
+  _("#modal").style.display = "none";
+  isEditIconClicked = false;
+};
+
 const savePerpetratorInfo = () => {
-  const perpetratorInfo = collectPerpertratorInfo();
+  let perpetratorInfo = collectPerpertratorInfo();
   if (!sessionStorage.hasOwnProperty("perpetrator")) {
     sessionStorage.setItem("perpetrator", JSON.stringify([perpetratorInfo]));
   } else {
@@ -151,9 +201,14 @@ const savePerpetratorInfo = () => {
   _("#modal").style.display = "none";
 };
 
-_("#btn-save-perpetrator").addEventListener("click", savePerpetratorInfo);
+_("#btn-save-perpetrator").addEventListener("click", () => {
+  isEditIconClicked
+    ? saveEditedPerpetratorInfo(idOfRecordToEdit)
+    : savePerpetratorInfo();
+});
+
 _("#btn-submit-case").addEventListener("click", () => {
-  console.log(collectGeneralCaseInfo());
+  // console.log(collectGeneralCaseInfo());
   sessionStorage.removeItem("perpetrator");
   clearFields(".reporting-field");
 });

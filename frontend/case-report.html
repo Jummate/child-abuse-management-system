@@ -88,7 +88,7 @@
       <div id="modal">
         <div id="modal-wrapper">
           <div class="modal-head">
-            <h3>Add Perpetrator</h3>
+            <h3 class="modal-head-text">Add Perpetrator</h3>
             <i class="fa fa-times icon"></i>
           </div>
           <div class="modal-body">
@@ -285,7 +285,7 @@
           </div>
         </fieldset>
 
-        <fieldset class="fieldset">
+        <div class="fieldset">
           <legend>Perpetrator Info</legend>
           <div id="add-perpetrator-container">
             <button
@@ -296,24 +296,26 @@
               Add Perpetrator
             </button>
           </div>
-          <div class="">
-            <div class="table-wrapper">
-              <small>(Click any item to edit or delete)</small>
-              <table>
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                    <th>Contact Info</th>
-                  </tr>
-                </thead>
-                <tbody id="perpetratorTableBody"></tbody>
-              </table>
-            </div>
+          <!-- <div class="inn"> -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Contact Info</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="perpetratorTableBody"></tbody>
+            </table>
           </div>
-        </fieldset>
+          <!-- </div> -->
+        </div>
 
         <fieldset class="fieldset">
           <legend>Reporter Info</legend>

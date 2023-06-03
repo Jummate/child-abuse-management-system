@@ -484,12 +484,13 @@ textarea {
   overflow-x: auto;
   /* font-family: "Montserrat Alternates", sans-serif; */
 }
+
 table {
   width: 100%;
   /* width: 800px; */
   border-collapse: collapse;
   font-size: var(--fs-para);
-  /* max-width: 800px; */
+  /* max-width: 400px; */
 }
 thead {
   background-color: var(--dark-aqua);
@@ -505,7 +506,12 @@ td {
 
 tr:nth-child(even) {
   background-color: var(--dark-aqua);
-  color: var(--aqua);
+  color: var(--white);
+}
+
+.fa-edit,
+.fa-trash {
+  cursor: pointer;
 }
 
 #add-perpetrator-container {
