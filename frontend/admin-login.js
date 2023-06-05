@@ -13,8 +13,30 @@ _("#close-menu").addEventListener("click", () => {
   _("#menu-container").style.display = "none";
 });
 
-const testUrl = (event) => {
-  event.preventDefault();
+const validateSingleField = (field) => {
+  if (!field.value) {
+    field.style.border = "2px solid red";
+    _(".error").style.display = "initial";
+    return false;
+  }
+  field.style.border = "none";
+  _(".error").style.display = "none";
+  return true;
+};
+
+const validateFields = (fields) => {
+  return Array.from(all(fields)).every((field) => validateSingleField(field));
+  // let isNotEmpty = true;
+  // for (let field of Array.from(all(fields))) {
+  //   if (!validateSingleField(field)) {
+  //     isNotEmpty = false;
+  //     break;
+  //   }
+  // }
+  // return isNotEmpty;
+};
+
+const logAdminIn = () => {
   if (true) {
     const data = JSON.stringify({
       username: _("#username").value,
@@ -33,7 +55,9 @@ const testUrl = (event) => {
           window.location.href = document.referrer.includes("case-report")
             ? document.referrer
             : DASHBOARD_URL;
-        } else {
+        } else if (data.status === "error") {
+          _(".error").style.display = "initial";
+          _(".error").textContent = `Access denied! ${data.message}`;
           sessionStorage.removeItem("isLoggedIn");
           throw new Error(data.message);
         }
@@ -44,4 +68,8 @@ const testUrl = (event) => {
   }
 };
 
-_("#login").addEventListener("click", testUrl);
+_("#login").addEventListener("click", () => {
+  if (validateFields(".login-input")) {
+    logAdminIn();
+  }
+});

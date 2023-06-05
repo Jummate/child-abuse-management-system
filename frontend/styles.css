@@ -409,6 +409,12 @@ body {
   height: 200px;
   /* background-color: red; */
 }
+.error {
+  display: none;
+  color: #ed1313;
+  font-size: 1.2rem;
+  font-family: var(--ff-sans);
+}
 #admin-login h1 {
   font-family: var(--ff-sans);
   color: var(--dark-aqua);
