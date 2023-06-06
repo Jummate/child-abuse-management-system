@@ -140,6 +140,7 @@
                 class="textarea modal-field"
                 rows="2"
                 cols="30"
+                placeholder="E.g telephone number and/or address"
               ></textarea>
             </div>
           </div>
@@ -177,35 +178,8 @@
                 <option value="Emotional">Emotional</option>
                 <option value="Sexual">Sexual</option>
                 <option value="Neglect">Neglect</option>
+                <option value="Physical">Physical</option>
               </select>
-            </div>
-
-            <!-- <div>
-              <label for="location-state">Abuse Type</label><br />
-           
-              <select
-                name="abuse-type"
-                id="abuse-type"
-                class="select reporting-field"
-              >
-                <option
-                  value=""
-                  selected
-                  disabled
-                ></option>
-                <option value="Emotional">Emotional</option>
-                <option value="Sexual">Sexual</option>
-                <option value="Neglect">Neglect</option>
-              </select>
-            </div> -->
-
-            <div>
-              <label for="location">Location</label><br />
-              <input
-                type="text"
-                class="input reporting-field"
-                id="location"
-              />
             </div>
 
             <div>
@@ -218,12 +192,30 @@
             </div>
 
             <div>
+              <label for="location">Location</label><br />
+              <!-- <input
+                type="text"
+                class="input reporting-field"
+                id="location"
+                placeholder="E.g 45, ABC street, Lambda, XYZ state, Nigeria"
+              /> -->
+              <textarea
+                id="location"
+                class="textarea reporting-field"
+                rows="2"
+                cols="30"
+                placeholder="e.g. 45, ABC street, Lambda, XYZ state, Nigeria"
+              ></textarea>
+            </div>
+
+            <div>
               <label for="other-info">Other Relevant Info</label><br />
               <textarea
                 id="other-info"
                 class="textarea reporting-field"
                 rows="2"
                 cols="30"
+                placeholder="e.g. a brief description of the scenario"
               ></textarea>
             </div>
           </div>
@@ -249,14 +241,6 @@
               />
             </div>
             <div>
-              <label for="victim-age">Age</label><br />
-              <input
-                type="number"
-                class="input reporting-field"
-                id="victim-age"
-              />
-            </div>
-            <div>
               <label for="victim-gender">Gender</label><br />
               <select
                 name="victim-gender"
@@ -272,6 +256,14 @@
                 <option value="Female">Female</option>
               </select>
             </div>
+            <div>
+              <label for="victim-age">Age</label><br />
+              <input
+                type="number"
+                class="input reporting-field"
+                id="victim-age"
+              />
+            </div>
 
             <div>
               <label for="victim-contact">Contact Info</label><br />
@@ -280,6 +272,7 @@
                 class="textarea reporting-field"
                 rows="2"
                 cols="30"
+                placeholder="E.g telephone number and/or address"
               ></textarea>
             </div>
           </div>
@@ -306,7 +299,7 @@
                   <th>Last Name</th>
                   <th>Age</th>
                   <th>Gender</th>
-                  <th>Contact Info</th>
+                  <th>Contact</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -337,14 +330,6 @@
               />
             </div>
             <div>
-              <label for="reporter-age">Age</label><br />
-              <input
-                type="number"
-                class="input reporting-field"
-                id="reporter-age"
-              />
-            </div>
-            <div>
               <label for="reporter-gender">Gender</label><br />
               <select
                 name="reporter-gender"
@@ -360,6 +345,14 @@
                 <option value="Female">Female</option>
               </select>
             </div>
+            <div>
+              <label for="reporter-age">Age</label><br />
+              <input
+                type="number"
+                class="input reporting-field"
+                id="reporter-age"
+              />
+            </div>
 
             <div>
               <label for="reporter-contact">Contact Info</label><br />
@@ -368,6 +361,7 @@
                 class="textarea reporting-field"
                 rows="2"
                 cols="30"
+                placeholder="E.g telephone number and/or address"
               ></textarea>
             </div>
           </div>

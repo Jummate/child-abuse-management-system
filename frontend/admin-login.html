@@ -90,6 +90,7 @@
       </header>
       <!-- <section class="admin-login-body"> -->
       <h1>ADMIN</h1>
+      <em class="error">** This field cannot be empty **</em>
       <form
         action=""
         name="admin-login"
@@ -97,20 +98,20 @@
       >
         <input
           type="text"
-          class="input"
+          class="input login-input"
           id="username"
           name="username"
           placeholder="username"
         />
         <input
           type="password"
-          class="input"
+          class="input login-input"
           id="password"
           placeholder="password"
           name="password"
         />
         <button
-          type="submit"
+          type="button"
           class="btn"
           id="login"
           name="login"
@@ -177,6 +178,8 @@
         <p>Designed and Built by Omololu Jumat &copy; 2023</p>
       </footer>
     </section>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
     <script src="./admin-login.js"></script>
   </body>
 </html>
