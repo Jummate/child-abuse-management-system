@@ -37,35 +37,33 @@ const validateFields = (fields) => {
 };
 
 const logAdminIn = () => {
-  if (true) {
-    const data = JSON.stringify({
-      username: _("#username").value,
-      password: _("#password").value,
-    });
+  const data = JSON.stringify({
+    username: _("#username").value,
+    password: _("#password").value,
+  });
 
-    fetch(LOGIN_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: data,
+  fetch(LOGIN_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "success") {
+        sessionStorage.setItem("isLoggedIn", true);
+        window.location.href = document.referrer.includes("case-report")
+          ? document.referrer
+          : DASHBOARD_URL;
+      } else if (data.status === "error") {
+        _(".error").style.display = "initial";
+        _(".error").textContent = `Access denied! ${data.message}`;
+        sessionStorage.removeItem("isLoggedIn");
+        throw new Error(data.message);
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          sessionStorage.setItem("isLoggedIn", true);
-          window.location.href = document.referrer.includes("case-report")
-            ? document.referrer
-            : DASHBOARD_URL;
-        } else if (data.status === "error") {
-          _(".error").style.display = "initial";
-          _(".error").textContent = `Access denied! ${data.message}`;
-          sessionStorage.removeItem("isLoggedIn");
-          throw new Error(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 _("#login").addEventListener("click", () => {

@@ -193,6 +193,13 @@ body {
   letter-spacing: 0.9px;
 }
 
+.modal-field::placeholder,
+.reporting-field::placeholder {
+  font-size: 1rem;
+  color: rgb(87, 100, 112);
+  line-height: 1.7;
+}
+
 /* Reporting Footer -----------------------------------------------------------------------------------*/
 #reporting-footer {
   width: 100%;
@@ -260,12 +267,6 @@ body {
 
 #menu-link a:hover {
   color: var(--lighter-slate);
-}
-
-#menu-link-wrapper {
-}
-
-#close-menu {
 }
 
 /* PAGES FOR REPORTING ----------------------------------------------------------------*/

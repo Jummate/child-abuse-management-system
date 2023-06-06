@@ -1,8 +1,9 @@
 const BASE_URL = "http://localhost/child-abuse-management-system/src";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
 const HOME_URL = `${BASE_URL}/frontend/`;
-const _ = (elem) => document.querySelector(elem);
+const SAVE_CASE_URL = `${BASE_URL}/backend/api/save-case.php`;
 
+const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);
 
 let isEditIconClicked = false;
@@ -131,7 +132,7 @@ const collectVictimInfo = () => {
   return {
     fname: _("#victim-first-name").value,
     lname: _("#victim-last-name").value,
-    age: _("#victim-age").value,
+    age: Number(_("#victim-age").value),
     gender: _("#victim-gender").value,
     contact: _("#victim-contact").value,
   };
@@ -141,7 +142,7 @@ const collectReporterInfo = () => {
   return {
     fname: _("#reporter-first-name").value,
     lname: _("#reporter-last-name").value,
-    age: _("#reporter-age").value,
+    age: Number(_("#reporter-age").value),
     gender: _("#reporter-gender").value,
     contact: _("#reporter-contact").value,
   };
@@ -149,10 +150,10 @@ const collectReporterInfo = () => {
 
 const collectPerpertratorInfo = () => {
   return {
-    ID: Date.now(),
+    ID: Number(Date.now()),
     fname: _("#perpetrator-first-name").value,
     lname: _("#perpetrator-last-name").value,
-    age: _("#perpetrator-age").value,
+    age: Number(_("#perpetrator-age").value),
     gender: _("#perpetrator-gender").value,
     contact: _("#perpetrator-contact").value,
   };
@@ -160,13 +161,11 @@ const collectPerpertratorInfo = () => {
 
 const collectGeneralCaseInfo = () => {
   return {
-    ID: Date.now(),
-    data: {
-      case: collectCaseInfo(),
-      victim: collectVictimInfo(),
-      perpetrator: fetchPerpetratorInfo(),
-      reporter: collectReporterInfo(),
-    },
+    caseID: crypto.randomUUID(),
+    case: collectCaseInfo(),
+    victim: collectVictimInfo(),
+    perpetrator: fetchPerpetratorInfo(),
+    reporter: collectReporterInfo(),
   };
 };
 
@@ -207,8 +206,29 @@ _("#btn-save-perpetrator").addEventListener("click", () => {
     : savePerpetratorInfo();
 });
 
-_("#btn-submit-case").addEventListener("click", () => {
-  // console.log(collectGeneralCaseInfo());
-  sessionStorage.removeItem("perpetrator");
-  clearFields(".reporting-field");
-});
+const saveAllInfo = () => {
+  const data = JSON.stringify(collectGeneralCaseInfo());
+
+  fetch(SAVE_CASE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "success") {
+        sessionStorage.removeItem("perpetrator");
+        _("#perpetratorTableBody").innerHTML = "";
+        clearFields(".reporting-field");
+        console.log(data.message);
+      } else if (data.status === "error") {
+        console.log(data.message);
+        throw new Error(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+_("#btn-submit-case").addEventListener("click", saveAllInfo);
