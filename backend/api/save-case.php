@@ -18,7 +18,7 @@ if ($db) {
     $user = new User($db);
     $user->saveCase($data);
 
-    echo $user ? json_encode(array("status" => "success", "message" => "Itme created successfully!")) :
+    echo $user ? json_encode(array("status" => "success", "message" => "Item created successfully!")) :
         json_encode(array("status" => "error", "message" => "Oops. Error occurred!"));
 } else {
     echo json_encode(array("status" => "error", "message" => "Oops! Database connection could not be established!"));

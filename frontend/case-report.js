@@ -7,7 +7,7 @@ const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);
 
 let isEditIconClicked = false;
-let idOfRecordToEdit;
+let idOfRecordToEdit = null;
 
 _("#hamburger").addEventListener("click", () => {
   _("#menu-container").style.display = "flex";
@@ -94,9 +94,8 @@ const fetchPerpetratorInfo = () => {
 const populateTable = (data) => {
   if (data) {
     _("#perpetratorTableBody").innerHTML = "";
-    data.reverse().forEach((item, index) => {
-      _("#perpetratorTableBody").appendChild(createNewRow(item, index));
-    });
+    const bodyContent = createRows(data.reverse());
+    _("#perpetratorTableBody").innerHTML = bodyContent.join("");
   }
 };
 
@@ -104,20 +103,24 @@ const clearFields = (fields) => {
   all(fields).forEach((field) => (field.value = ""));
 };
 
-const createNewRow = (obj, index) => {
-  let newRow = document.createElement("tr");
-  newRow.classList.add("table-row");
-  newRow.setAttribute("data-id", obj.ID);
-  newRow.innerHTML += `<td>${index + 1}</td>`;
-  newRow.innerHTML += `<td>${obj.fname}</td>`;
-  newRow.innerHTML += `<td>${obj.lname}</td>`;
-  newRow.innerHTML += `<td>${obj.age}</td>`;
-  newRow.innerHTML += `<td>${obj.gender}</td>`;
-  newRow.innerHTML += `<td>${obj.contact}</td>`;
-  newRow.innerHTML += `<td><span class='fa fa-edit edit-info' data-id=${obj.ID}><span></td>`;
-  newRow.innerHTML += `<td><span class='fa fa-trash delete-info' data-id=${obj.ID}><span></td>`;
+const createRows = (data) => {
+  const rows = data.map((obj, index) => {
+    return `<tr data-id=${obj.ID} class="table-row">
+              <td>${index + 1}</td>
+              <td>${obj.name}</td>
+              <td>${obj.age}</td>
+              <td>${obj.gender}</td>
+              <td>${obj.contact}</td>
+              <td><span class='fa fa-edit edit-info' data-id=${
+                obj.ID
+              }><span></td>
+              <td><span class='fa fa-trash delete-info' data-id=${
+                obj.ID
+              }><span></td>
+            </tr>`;
+  });
 
-  return newRow;
+  return rows;
 };
 
 const collectCaseInfo = () => {
@@ -126,56 +129,50 @@ const collectCaseInfo = () => {
     location: _("#location").value,
     eventDate: _("#event-date").value,
     otherInfo: _("#other-info").value,
-  };
-};
-const collectVictimInfo = () => {
-  return {
-    fname: _("#victim-first-name").value,
-    lname: _("#victim-last-name").value,
-    age: Number(_("#victim-age").value),
-    gender: _("#victim-gender").value,
-    contact: _("#victim-contact").value,
+    state: _("#state").value,
+    city: _("#city").value,
   };
 };
 
-const collectReporterInfo = () => {
-  return {
-    fname: _("#reporter-first-name").value,
-    lname: _("#reporter-last-name").value,
-    age: Number(_("#reporter-age").value),
-    gender: _("#reporter-gender").value,
-    contact: _("#reporter-contact").value,
+const collectEachInfo = (actor) => {
+  let ID = Date.now();
+  const info = {
+    name:
+      _(`#${actor}-first-name`).value + " " + _(`#${actor}-last-name`).value,
+    age: Number(_(`#${actor}-age`).value),
+    gender: _(`#${actor}-gender`).value,
+    contact: _(`#${actor}-contact`).value,
   };
-};
 
-const collectPerpertratorInfo = () => {
-  return {
-    ID: Number(Date.now()),
-    fname: _("#perpetrator-first-name").value,
-    lname: _("#perpetrator-last-name").value,
-    age: Number(_("#perpetrator-age").value),
-    gender: _("#perpetrator-gender").value,
-    contact: _("#perpetrator-contact").value,
-  };
+  return actor === "perpetrator" ? { ID, ...info } : info;
 };
 
 const collectGeneralCaseInfo = () => {
+  let generatedID = crypto.randomUUID();
+  generatedID = generatedID.split("-");
+  generatedID = generatedID[0] + generatedID[1];
+
   return {
-    caseID: crypto.randomUUID(),
+    caseID: generatedID,
     case: collectCaseInfo(),
-    victim: collectVictimInfo(),
+    victim: collectEachInfo("victim"),
     perpetrator: fetchPerpetratorInfo(),
-    reporter: collectReporterInfo(),
+    reporter: collectEachInfo("reporter"),
   };
 };
 
 const saveEditedPerpetratorInfo = (recordID) => {
   let temp = JSON.parse(sessionStorage.getItem("perpetrator"));
-  let perpetratorInfo = collectPerpertratorInfo();
-  const x = temp.findIndex((item) => Number(item.ID) === Number(recordID));
+  let perpetratorInfo = collectEachInfo("perpetrator");
+  const tempArr = temp.findIndex(
+    (item) => Number(item.ID) === Number(recordID)
+  );
 
   perpetratorInfo = { ...perpetratorInfo, ID: recordID };
-  temp.splice(x, 1, perpetratorInfo);
+
+  //this ensures that the edited item retains its position on the table
+  temp.splice(tempArr, 1, perpetratorInfo);
+
   // temp = temp.filter((item) => Number(item.ID) !== Number(recordID));
   // temp.push(perpetratorInfo);
   sessionStorage.setItem("perpetrator", JSON.stringify(temp));
@@ -187,7 +184,7 @@ const saveEditedPerpetratorInfo = (recordID) => {
 };
 
 const savePerpetratorInfo = () => {
-  let perpetratorInfo = collectPerpertratorInfo();
+  let perpetratorInfo = collectEachInfo("perpetrator");
   if (!sessionStorage.hasOwnProperty("perpetrator")) {
     sessionStorage.setItem("perpetrator", JSON.stringify([perpetratorInfo]));
   } else {
@@ -222,7 +219,6 @@ const saveAllInfo = () => {
         clearFields(".reporting-field");
         console.log(data.message);
       } else if (data.status === "error") {
-        console.log(data.message);
         throw new Error(data.message);
       }
     })
