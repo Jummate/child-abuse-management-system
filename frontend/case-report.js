@@ -217,7 +217,6 @@ const saveAllInfo = () => {
         sessionStorage.removeItem("perpetrator");
         _("#perpetratorTableBody").innerHTML = "";
         clearFields(".reporting-field");
-        console.log(data.message);
       } else if (data.status === "error") {
         throw new Error(data.message);
       }

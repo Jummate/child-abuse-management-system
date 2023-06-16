@@ -9,12 +9,18 @@ class User
     {
         $this->conn = $db;
     }
-    function findAdmin($username, $password)
+    function findAdmin($data)
     {
+        //convert the object into an array
+        $arr = json_decode(json_encode($data), TRUE);
+
+        extract($arr);
         $query = "SELECT * FROM tb_admin WHERE username = :username AND password = :password";
         $stmt = $this->conn->prepare($query);
 
         $username = htmlspecialchars(strip_tags($username));
+        $password = htmlspecialchars(strip_tags($password));
+
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":password", $password);
 
@@ -136,5 +142,26 @@ class User
 
         $stmt->execute();
         return $stmt->rowCount() > 0 ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array();
+    }
+
+    function updateCaseStatus($data)
+    {
+        //convert the object into an array
+        $arr = json_decode(json_encode($data), TRUE);
+
+        extract($arr);
+        $query = "UPDATE tb_case SET case_status = :case_status WHERE case_id = :case_id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $case_id = htmlspecialchars(strip_tags($case_id));
+        $case_status = htmlspecialchars(strip_tags($case_status));
+
+
+        $stmt->bindParam(":case_id", $case_id);
+        $stmt->bindParam(":case_status", $case_status);
+
+
+        return ($stmt->execute()) ? true : false;
     }
 }

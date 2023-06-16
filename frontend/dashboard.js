@@ -28,8 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.href = ADMIN_LOGIN_URL;
   }
 
-  const url =
-    "http://localhost/child-abuse-management-system/src/backend/api/read-case.php";
+  const url = `${BASE_URL}/backend/api/cases.php`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -90,23 +89,56 @@ const table = new Tabulator("#table-container", {
       title: "Status",
       field: "case_status",
       // sorter: "date",
-      hozAlign: "center",
-      editor: "input",
+      editor: "list",
+      editorParams: {
+        values: ["Unaddressed", "In Progress", "Addressed"],
+      },
       width: 80,
       download: true,
       formatter: function (cell) {
         let value = cell.getValue();
         let elem = cell.getElement();
-        if (value === "Unaddressed") {
-          return (elem.style.color = "red"), (elem.style.textContent = value);
-          // return (
-          //   "<span style='color:#3FB449; font-weight:bold;'>" +
-          //   value +
-          //   "</span>"
-          // );
-        } else {
-          return value;
+        switch (value) {
+          case "Unaddressed":
+            return (
+              (elem.style.color = "red"),
+              (elem.style.fontWeight = "bold"),
+              (elem.style.textContent = value)
+            );
+          case "In Progress":
+            return (
+              (elem.style.color = "#9a710a"),
+              (elem.style.fontWeight = "bold"),
+              (elem.style.textContent = value)
+            );
+          default:
+            return (
+              (elem.style.color = "green"),
+              (elem.style.fontWeight = "bold"),
+              (elem.style.textContent = value)
+            );
         }
+      },
+      cellEdited: function (cell) {
+        const { case_id, case_status } = cell.getData();
+        console.log({ case_id, case_status });
+        const url = `${BASE_URL}/backend/api/update.php`;
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ case_id, case_status }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              console.log(data.message);
+            } else if (data.status === "failure") {
+              throw new Error(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       },
     },
     {
@@ -118,13 +150,13 @@ const table = new Tabulator("#table-container", {
     {
       title: "Age",
       field: "perpetrator_age",
-      width: 150,
+      width: 40,
     },
 
     {
       title: "Gender",
       field: "perpetrator_gender",
-      width: 80,
+      width: 60,
     },
 
     {
@@ -142,13 +174,13 @@ const table = new Tabulator("#table-container", {
     {
       title: "Age",
       field: "victim_age",
-      width: 80,
+      width: 40,
     },
 
     {
       title: "Gender",
       field: "victim_gender",
-      width: 80,
+      width: 60,
     },
 
     {
@@ -166,13 +198,13 @@ const table = new Tabulator("#table-container", {
     {
       title: "Age",
       field: "reporter_age",
-      width: 80,
+      width: 40,
     },
 
     {
       title: "Gender",
       field: "reporter_gender",
-      width: 80,
+      width: 60,
     },
 
     {
@@ -181,10 +213,6 @@ const table = new Tabulator("#table-container", {
       width: 150,
     },
   ],
-});
-
-table.on("cellEdited", function (cell) {
-  // console.log(cell.getData());
 });
 
 _("#filter-select").addEventListener("change", () => {
