@@ -3,6 +3,7 @@ const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
 const HOME_URL = `${BASE_URL}/frontend/`;
 const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);
+const CASE_STATUS = ["Unaddressed", "In Progress", "Addressed"];
 
 [...all(".sign-out")].forEach((elem) => (elem.style.display = "initial"));
 
@@ -76,7 +77,7 @@ const table = new Tabulator("#table-container", {
       hozAlign: "left",
       width: 150,
     },
-    { title: "Date", field: "event_date", editor: "input", width: 80 },
+    { title: "Date", field: "event_date", width: 80 },
     {
       title: "Relevant Info",
       field: "other_info",
@@ -91,7 +92,7 @@ const table = new Tabulator("#table-container", {
       // sorter: "date",
       editor: "list",
       editorParams: {
-        values: ["Unaddressed", "In Progress", "Addressed"],
+        values: CASE_STATUS,
       },
       width: 80,
       download: true,
@@ -121,7 +122,6 @@ const table = new Tabulator("#table-container", {
       },
       cellEdited: function (cell) {
         const { case_id, case_status } = cell.getData();
-        console.log({ case_id, case_status });
         const url = `${BASE_URL}/backend/api/update.php`;
         fetch(url, {
           method: "POST",
@@ -337,13 +337,14 @@ const addFilter = ({ ID, field, type, value, fieldAlias, typeAlias }) => {
     table.addFilter(field, type, value);
   } else {
     let temp = JSON.parse(sessionStorage.getItem("filteredItems"));
+    //prevent duplicate entries
     itemToAdd = Object.values(temp).find(
       (content) =>
         content.field === item.field &&
         content.type === item.type &&
         content.value === item.value
     );
-    //prevent duplicate entries
+
     if (!itemToAdd) {
       temp = { ...temp, [`${ID}`]: item };
       sessionStorage.setItem("filteredItems", JSON.stringify(temp));
@@ -410,9 +411,9 @@ _("#filter-gender").addEventListener("click", (e) => {
   }
 });
 
-const removeChecked = (elem) => {
-  _(elem).checked = false;
-};
+// const removeChecked = (elem) => {
+//   _(elem).checked = false;
+// };
 
 _("#filter-age").addEventListener("click", (e) => {
   let target = e.target;

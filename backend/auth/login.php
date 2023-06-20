@@ -16,8 +16,7 @@ $db = $database->getConnection();
 
 if ($db) {
     $data = json_decode(file_get_contents("php://input"));
-    // $userName = $data->username;
-    // $passWord = $data->password;
+
     $admin = new User($db);
     $adminInfo = $admin->findAdmin($data);
     $num = $adminInfo->rowCount();

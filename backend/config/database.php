@@ -1,11 +1,11 @@
 <?php
-// include_once("./constant.php");
+require_once("constant.php");
 class Database
 {
-    private $host = "localhost";
-    private $username = "root";
-    private $db_name = "cams_db";
-    private $password = "";
+    private $host = HOST;
+    private $username = USERNAME;
+    private $db_name = DB_NAME;
+    private $password = PASSWORD;
     private $dsn;
     public $conn;
 

@@ -1,6 +1,6 @@
 <?php
 
-// include_once("../config/constant.php");
+require_once("../config/constant.php");
 class User
 {
     // DB stuff
@@ -15,7 +15,7 @@ class User
         $arr = json_decode(json_encode($data), TRUE);
 
         extract($arr);
-        $query = "SELECT * FROM tb_admin WHERE username = :username AND password = :password";
+        $query = "SELECT * FROM " . ADMIN_TABLE . " WHERE username = :username AND password = :password";
         $stmt = $this->conn->prepare($query);
 
         $username = htmlspecialchars(strip_tags($username));
@@ -37,10 +37,10 @@ class User
         //destructure the resulting array
         extract($arr);
 
-        return $this->saveCaseInfo($case, $caseID, "tb_case")
-            && $this->saveEachInfo($victim, $caseID, "tb_victim")
-            && $this->saveEachInfo($reporter, $caseID, "tb_reporter")
-            && $this->savePerpetratorInfo($perpetrator, $caseID, "tb_perpetrator");
+        return $this->saveCaseInfo($case, $caseID, CASE_TABLE)
+            && $this->saveEachInfo($victim, $caseID, VICTIM_TABLE)
+            && $this->saveEachInfo($reporter, $caseID, REPORTER_TABLE)
+            && $this->savePerpetratorInfo($perpetrator, $caseID, PERPETRATOR_TABLE);
     }
 
     private function saveCaseInfo($data, $caseID, $table)
@@ -134,9 +134,9 @@ class User
 
     function readCase()
     {
-        $query = "SELECT * FROM tb_case c JOIN tb_victim v ON c.case_id = v.case_id 
-                    JOIN tb_reporter r ON v.case_id = r.case_id 
-                    JOIN tb_perpetrator p ON r.case_id = p.case_id";
+        $query = "SELECT * FROM " . CASE_TABLE . " c JOIN " . VICTIM_TABLE . " v ON c.case_id = v.case_id 
+                    JOIN " . REPORTER_TABLE . " r ON v.case_id = r.case_id 
+                    JOIN " . PERPETRATOR_TABLE . " p ON r.case_id = p.case_id";
 
         $stmt = $this->conn->prepare($query);
 
@@ -150,7 +150,7 @@ class User
         $arr = json_decode(json_encode($data), TRUE);
 
         extract($arr);
-        $query = "UPDATE tb_case SET case_status = :case_status WHERE case_id = :case_id";
+        $query = "UPDATE " . CASE_TABLE . " SET case_status = :case_status WHERE case_id = :case_id";
 
         $stmt = $this->conn->prepare($query);
 
