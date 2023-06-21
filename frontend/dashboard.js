@@ -415,6 +415,33 @@ _("#filter-gender").addEventListener("click", (e) => {
 //   _(elem).checked = false;
 // };
 
+const getItemCountByCriteria = (arr, criterion) => {
+  return arr.reduce((acc, item) => {
+    if (acc.hasOwnProperty(item[`${criterion}`])) {
+      acc[item[`${criterion}`]]++;
+    } else {
+      acc[item[`${criterion}`]] = 1;
+    }
+    return acc;
+  }, {});
+};
+
+const getGroupedItems = (arr, criterion) => {
+  const sortedData = getItemCountByCriteria(arr, criterion);
+  return [Object.keys(sortedData), Object.values(sortedData)];
+};
+
+const getGroupedActorsByGender = (data) => {
+  const perpetrator = getItemCountByCriteria(data, "perpetrator_gender");
+  const victim = getItemCountByCriteria(data, "victim_gender");
+  const reporter = getItemCountByCriteria(data, "reporter_gender");
+
+  return [
+    [victim.Male, perpetrator.Male, reporter.Male],
+    [victim.Female, perpetrator.Female, reporter.Female],
+  ];
+};
+
 _("#filter-age").addEventListener("click", (e) => {
   let target = e.target;
 
@@ -539,96 +566,186 @@ _("#export").addEventListener("change", () => {
   }
 });
 
-var options = {
+// The chart that displays the distribution of actors by gender
+const genderChartOptions = {
+  series: [],
   chart: {
-    type: "line",
+    type: "bar",
+    height: 350,
+    // width: 300,
+    stacked: false,
   },
-  series: [
-    {
-      name: "sales",
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+  title: {
+    text: "Gender distribution of actors",
+    style: {
+      fontSize: "12px",
     },
-  ],
-  xaxis: {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
   },
 
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 380,
-        },
-        legend: {
-          position: "bottom",
-        },
-      },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "70%",
+      endingShape: "rounded",
     },
-    {
-      breakpoint: 320,
-      options: {
-        chart: {
-          width: 300,
-        },
-        legend: {
-          position: "bottom",
-        },
-      },
-    },
-  ],
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  legend: {
+    position: "top",
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ["transparent"],
+  },
+  xaxis: {
+    categories: ["Victim", "Perpetrator", "Reporter"],
+  },
+
+  fill: {
+    opacity: 1,
+  },
 };
-var option2 = {
-  series: [44, 55, 13, 43, 22],
+
+const actorGenderChart = new ApexCharts(
+  document.querySelector("#chart-actor-gender"),
+  genderChartOptions
+);
+actorGenderChart.render();
+
+//The chart that displays the distribution of Abuse Type
+const abuseChartOptions = {
+  series: [],
   chart: {
-    width: 380,
+    // width: 380,
     type: "pie",
   },
-  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 380,
-        },
-        legend: {
-          position: "bottom",
-        },
-      },
+  title: {
+    text: "Abuse Type",
+    style: {
+      fontSize: "12px",
     },
-    {
-      breakpoint: 320,
-      options: {
-        chart: {
-          width: 300,
-        },
-        legend: {
-          position: "bottom",
-        },
-      },
-    },
-  ],
+  },
+  legend: {
+    position: "bottom",
+  },
+
+  labels: [],
+  // responsive: [
+  //   {
+  //     breakpoint: 480,
+  //     options: {
+  //       chart: {
+  //         width: 380,
+  //       },
+  //       legend: {
+  //         position: "bottom",
+  //       },
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 320,
+  //     options: {
+  //       chart: {
+  //         width: 300,
+  //       },
+  //       legend: {
+  //         position: "bottom",
+  //       },
+  //     },
+  //   },
+  // ],
 };
 
-var chart1 = new ApexCharts(document.querySelector("#mChart"), options);
+const abuseTypeChart = new ApexCharts(
+  document.querySelector("#chart-abuse-type"),
+  abuseChartOptions
+);
+abuseTypeChart.render();
 
-chart1.render();
+//The chart that displays the distribution of Case Status
+const caseChartOptions = {
+  series: [],
+  chart: {
+    // width: 380,
+    type: "pie",
+  },
 
-var chart2 = new ApexCharts(document.querySelector("#yChart"), option2);
+  title: {
+    text: "Case Status",
+    style: {
+      fontSize: "12px",
+    },
+  },
+  legend: {
+    position: "bottom",
+  },
+  labels: [],
+  // responsive: [
+  //   {
+  //     breakpoint: 480,
+  //     options: {
+  //       chart: {
+  //         width: 380,
+  //       },
+  //       legend: {
+  //         position: "bottom",
+  //       },
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 320,
+  //     options: {
+  //       chart: {
+  //         width: 300,
+  //       },
+  //       legend: {
+  //         position: "bottom",
+  //       },
+  //     },
+  //   },
+  // ],
+};
 
-chart2.render();
+const caseStatusChart = new ApexCharts(
+  document.querySelector("#chart-case-status"),
+  caseChartOptions
+);
+caseStatusChart.render();
 
-// table.on("dataLoaded", function (data) {
-//   if (sessionStorage.hasOwnProperty("loadOnce")) {
-//     _("#dashboard").style.display = "flex";
-//   } else {
-//     sessionStorage.setItem("loadOnce", true);
-//     _("#dashboard").style.display = "none";
-//   }
-// });
+table.on("dataProcessed", function (data) {
+  if (data.length > 0) {
+    const [male, female] = getGroupedActorsByGender(data);
+    const [abuseTypeKeys, abuseTypeValues] = getGroupedItems(
+      data,
+      "abuse_type"
+    );
+    const [caseStatusKeys, caseStatusValues] = getGroupedItems(
+      data,
+      "case_status"
+    );
 
-//trigger an alert message when the row is clicked
-//   table.on("rowClick", function (e, row) {
-//     alert("Row " + row.getData().id + " Clicked!!!!");
-//   });
+    actorGenderChart.updateSeries([
+      {
+        name: "Male",
+        data: male,
+      },
+      {
+        name: "Female",
+        data: female,
+      },
+    ]);
+
+    abuseTypeChart.updateOptions({
+      series: abuseTypeValues,
+      labels: abuseTypeKeys,
+    });
+
+    caseStatusChart.updateOptions({
+      series: caseStatusValues,
+      labels: caseStatusKeys,
+    });
+  }
+});

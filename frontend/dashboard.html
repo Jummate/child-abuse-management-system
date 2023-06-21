@@ -101,38 +101,50 @@
         </nav>
       </header>
       <main id="dashboard-body">
-        <div class="action-btn-container">
-          <span
-            class="fa fa-filter icon"
-            id="filter"
-          >
-          </span
-          ><input
-            type="search"
-            class="btn"
-            id="search"
-            placeholder="Search..."
-          />
-          <select
-            name="export"
-            id="export"
-            class="select"
-          >
-            <option
-              value="Export"
-              disabled
-              selected
+        <div id="dashboard-body-wrapper">
+          <div class="action-btn-container">
+            <span
+              class="fa fa-filter icon"
+              id="filter"
             >
-              Export
-            </option>
-            <option value="csv">CSV</option>
-            <option value="pdf">PDF</option>
-          </select>
-        </div>
-        <div id="table-container"></div>
-        <div id="chart-container">
-          <div id="mChart"></div>
-          <div id="yChart"></div>
+            </span
+            ><input
+              type="search"
+              class="btn"
+              id="search"
+              placeholder="Search..."
+            />
+            <select
+              name="export"
+              id="export"
+              class="select"
+            >
+              <option
+                value="Export"
+                disabled
+                selected
+              >
+                Export
+              </option>
+              <option value="csv">CSV</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div>
+          <div id="table-container"></div>
+          <div id="chart-container">
+            <div
+              id="chart-actor-gender"
+              class="chart-item"
+            ></div>
+            <div
+              id="chart-abuse-type"
+              class="chart-item"
+            ></div>
+            <div
+              id="chart-case-status"
+              class="chart-item"
+            ></div>
+          </div>
         </div>
       </main>
 
