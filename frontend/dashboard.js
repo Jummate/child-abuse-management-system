@@ -20,11 +20,13 @@ window.addEventListener("click", (event) => {
   if (target.classList.contains("btn-sign-out")) {
     event.preventDefault();
     sessionStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("filteredItems");
     window.location.href = HOME_URL;
   }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+  sessionStorage.removeItem("filteredItems");
   if (!sessionStorage.getItem("isLoggedIn")) {
     window.location.href = ADMIN_LOGIN_URL;
   }
@@ -364,7 +366,12 @@ const removeFilter = (ID) => {
   let temp = JSON.parse(sessionStorage.getItem("filteredItems"));
   const { field, type, value } = temp[`${ID}`];
   delete temp[`${ID}`];
-  sessionStorage.setItem("filteredItems", JSON.stringify(temp));
+  if (Object.keys(temp).length > 0) {
+    sessionStorage.setItem("filteredItems", JSON.stringify(temp));
+  } else {
+    sessionStorage.removeItem("filteredItems");
+    removeMultipleChecked("input[type=checkbox]");
+  }
   table.removeFilter(field, type, value);
   return { field, type, value };
 };
@@ -380,9 +387,12 @@ _("#filter-abuse-type").addEventListener("click", (e) => {
     fieldAlias: "Abuse Type",
     typeAlias: ":",
   };
+  console.log(arg.value);
   if (target.checked) {
+    console.log("checked");
     addFilter(arg);
   } else {
+    console.log("not checked");
     const { field } = removeFilter(ID);
     let anyVariable = field.split("_")[0];
     _(`#filtered-item-container #${anyVariable}-${ID}`).remove();
@@ -411,9 +421,12 @@ _("#filter-gender").addEventListener("click", (e) => {
   }
 });
 
-// const removeChecked = (elem) => {
-//   _(elem).checked = false;
-// };
+const removeSingleChecked = (elem) => {
+  _(elem).checked = false;
+};
+const removeMultipleChecked = (elems) => {
+  all(elems).forEach((elem) => (elem.checked = false));
+};
 
 const getItemCountByCriteria = (arr, criterion) => {
   return arr.reduce((acc, item) => {
@@ -488,7 +501,7 @@ _("#filtered-item-container").addEventListener("click", (e) => {
     let ID = target.getAttribute("data-custom-id");
     removeFilter(ID);
     target.parentElement.remove();
-    // removeChecked(`#filter-abuse-type input#${ID}`);
+    // removeSingleChecked(`#filter-abuse-type input#${ID}`);
   }
 });
 
@@ -549,6 +562,13 @@ _("#add-filter-date").addEventListener("click", () => {
     typeAlias: ` ${operators[type]} `,
   };
   addFilter(arg);
+});
+
+_("#btn-clear-filter").addEventListener("click", () => {
+  table.clearFilter();
+  _("#filtered-item-container").innerHTML = "";
+  removeMultipleChecked("input[type=checkbox]");
+  sessionStorage.removeItem("filteredItems");
 });
 
 _("#export").addEventListener("change", () => {
@@ -683,30 +703,30 @@ const caseChartOptions = {
     position: "bottom",
   },
   labels: [],
-  // responsive: [
-  //   {
-  //     breakpoint: 480,
-  //     options: {
-  //       chart: {
-  //         width: 380,
-  //       },
-  //       legend: {
-  //         position: "bottom",
-  //       },
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 320,
-  //     options: {
-  //       chart: {
-  //         width: 300,
-  //       },
-  //       legend: {
-  //         position: "bottom",
-  //       },
-  //     },
-  //   },
-  // ],
+  responsive: [
+    // {
+    //   breakpoint: 480,
+    //   options: {
+    //     chart: {
+    //       width: 380,
+    //     },
+    //     legend: {
+    //       position: "bottom",
+    //     },
+    //   },
+    // },
+    // {
+    //   breakpoint: 280,
+    //   options: {
+    //     chart: {
+    //       width: 280,
+    //     },
+    //     legend: {
+    //       position: "bottom",
+    //     },
+    //   },
+    // },
+  ],
 };
 
 const caseStatusChart = new ApexCharts(
