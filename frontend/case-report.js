@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost/child-abuse-management-system/src";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
 const HOME_URL = `${BASE_URL}/frontend/`;
-const SAVE_CASE_URL = `${BASE_URL}/backend/api/save.php`;
+const SAVE_CASE_URL = `${BASE_URL}/backend/api/save-case.php`;
 
 const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);

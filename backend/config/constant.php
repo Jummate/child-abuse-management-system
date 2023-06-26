@@ -12,3 +12,6 @@ define("CASE_TABLE", "tb_case");
 define("VICTIM_TABLE", "tb_victim");
 define("REPORTER_TABLE", "tb_reporter");
 define("PERPETRATOR_TABLE", "tb_perpetrator");
+
+define("DASHBOARD_URL", "http://localhost/child-abuse-management-system/src/frontend/dashboard.html");
+define("SUPER_ADMIN_URL", "http://localhost/child-abuse-management-system/src/frontend/super-admin.html");

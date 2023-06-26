@@ -15,19 +15,74 @@ class User
         $arr = json_decode(json_encode($data), TRUE);
 
         extract($arr);
-        $query = "SELECT * FROM " . ADMIN_TABLE . " WHERE username = :username AND password = :password";
+        $query = "SELECT * FROM " . ADMIN_TABLE . " WHERE username = :username";
         $stmt = $this->conn->prepare($query);
 
         $username = htmlspecialchars(strip_tags($username));
-        $password = htmlspecialchars(strip_tags($password));
 
         $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":password", $password);
 
         $stmt->execute();
 
+        return $stmt->rowCount() > 0 ? $stmt->fetch(PDO::FETCH_ASSOC) : array();
+    }
+    function getAdmins()
+    {
+        $query = "SELECT id, username FROM " . ADMIN_TABLE . " WHERE NOT role = 'superadmin'";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt->rowCount() > 0 ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array();
+    }
+
+    function saveAdmin($data)
+    {
+        //convert the object into an array
+        $arr = json_decode(json_encode($data), TRUE);
+
+        //destructure the resulting array
+        extract($arr);
+        $query = "INSERT INTO " . ADMIN_TABLE . " (id, username, password, role)
+                VALUES (:id, :username, :password, :role)";
+
+        $stmt = $this->conn->prepare($query);
+
+        $ID = htmlspecialchars(strip_tags($ID));
+        $username = htmlspecialchars(strip_tags($username));
+        $password = htmlspecialchars(strip_tags($password));
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+
+        $stmt->bindParam(":id", $ID);
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":role", $role);
+        $stmt->bindParam(":password", $hashed_password);
+
+
+
+        // execute query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        echo $stmt->errorCode();
+        return false;
+    }
+
+    public function deleteAdmin($ID)
+    {
+        $query = "DELETE FROM " . ADMIN_TABLE . " WHERE id = :ID";
+        $stmt = $this->conn->prepare($query);
+
+        $ID = htmlspecialchars(strip_tags($ID));
+        $stmt->bindParam(":ID", $ID);
+
+        $stmt->execute();
         return $stmt;
     }
+
+
     function saveCase($data)
     {
 

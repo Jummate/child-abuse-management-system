@@ -1,5 +1,7 @@
 const BASE_URL = "http://localhost/child-abuse-management-system/src";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
+const UPDATE_CASE_URL = `${BASE_URL}/backend/api/update-case.php`;
+const ALL_CASES_URL = `${BASE_URL}/backend/api/cases.php`;
 const HOME_URL = `${BASE_URL}/frontend/`;
 const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);
@@ -31,8 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.href = ADMIN_LOGIN_URL;
   }
 
-  const url = `${BASE_URL}/backend/api/cases.php`;
-  fetch(url)
+  fetch(ALL_CASES_URL)
     .then((response) => response.json())
     .then((data) => {
       if (data.status === "success") {
@@ -53,8 +54,6 @@ const table = new Tabulator("#table-container", {
 
   layout: "fitColumns", //fit columns to width of table (optional)
   pagination: true,
-  // paginationSize: 3,
-  // resizableRows: true,
   columns: [
     //Define Table Columns
 
@@ -124,8 +123,8 @@ const table = new Tabulator("#table-container", {
       },
       cellEdited: function (cell) {
         const { case_id, case_status } = cell.getData();
-        const url = `${BASE_URL}/backend/api/update.php`;
-        fetch(url, {
+
+        fetch(UPDATE_CASE_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ case_id, case_status }),
@@ -387,12 +386,9 @@ _("#filter-abuse-type").addEventListener("click", (e) => {
     fieldAlias: "Abuse Type",
     typeAlias: ":",
   };
-  console.log(arg.value);
   if (target.checked) {
-    console.log("checked");
     addFilter(arg);
   } else {
-    console.log("not checked");
     const { field } = removeFilter(ID);
     let anyVariable = field.split("_")[0];
     _(`#filtered-item-container #${anyVariable}-${ID}`).remove();

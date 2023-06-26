@@ -8,6 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once("../models/User.php");
 include_once("../config/database.php");
+require_once("../config/constant.php");
 
 
 
@@ -19,14 +20,20 @@ if ($db) {
 
     $admin = new User($db);
     $adminInfo = $admin->findAdmin($data);
-    $num = $adminInfo->rowCount();
+    extract($adminInfo);
 
-    if ($num > 0) {
+    if (count($adminInfo) > 0 && password_verify($data->password, $password)) {
         http_response_code(200);
-        echo json_encode(array("status" => "success", "message" => "A record was found!"));
+        //case-insensitive comparison of strings
+        if (strcasecmp($role, "superadmin") == 0) {
+            echo json_encode(array("status" => "success", "message" => "A record was found!", "redirect_url" => SUPER_ADMIN_URL));
+        } else {
+            echo json_encode(array("status" => "success", "message" => "A record was found!", "redirect_url" => DASHBOARD_URL));
+        }
     } else {
         http_response_code(401);
         echo json_encode(array("status" => "error", "message" => "Invalid credentials!"));
+        die();
     }
 } else {
     echo json_encode(array("status" => "error", "message" => "Oops! Database connection could not be established!"));
