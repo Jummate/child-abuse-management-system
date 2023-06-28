@@ -501,6 +501,21 @@ tr:nth-child(even) {
   max-width: 600px;
 }
 
+#success-msg {
+  color: var(--aqua);
+  background-color: rgb(45, 95, 45);
+  padding: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--fs-para);
+  font-family: var(--ff-sans);
+  text-align: center;
+  animation: fade-out 2s ease-in;
+  display: none;
+}
+
 /* ----------------------Modal ---------------------------- */
 #modal {
   position: fixed;
@@ -655,12 +670,6 @@ tr:nth-child(even) {
 #export option {
   background-color: var(--light-slate);
 }
-#search {
-  padding: 10px;
-  background-color: var(--dark-aqua);
-  color: var(--aqua);
-  border-bottom: 1px solid var(--aqua);
-}
 
 /* FILTER CONTAINER */
 
@@ -777,8 +786,6 @@ tr:nth-child(even) {
 
 /* SUPER ADMIN STYLES */
 
-#super-admin {
-}
 #super-admin-home {
   min-height: 100vh;
   background-color: var(--dark-aqua);
@@ -915,7 +922,7 @@ tr:nth-child(even) {
   justify-content: center;
   background: transparent;
 }
-#modal-wrapper {
+#super-admin-modal-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -930,20 +937,20 @@ tr:nth-child(even) {
   text-align: right;
   color: var(--darker-aqua);
 }
-#modal-wrapper label {
+#super-admin-modal-wrapper label {
   display: block;
   margin-bottom: 10px;
 }
-#modal-wrapper input {
+#super-admin-modal-wrapper input {
   max-width: none;
   margin-bottom: 10px;
 }
 
-#modal-wrapper button {
+#super-admin-modal-wrapper button {
   background-color: var(--darker-aqua);
   color: var(--aqua);
 }
-#modal-wrapper button:hover {
+#super-admin-modal-wrapper button:hover {
   opacity: 0.9;
 }
 
@@ -972,6 +979,15 @@ tr:nth-child(even) {
 
   #menu-container {
     display: none !important;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 

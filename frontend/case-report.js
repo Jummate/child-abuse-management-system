@@ -215,7 +215,9 @@ const saveAllInfo = () => {
     .then((data) => {
       if (data.status === "success") {
         sessionStorage.removeItem("perpetrator");
+        _("#success-msg").style.display = "block";
         _("#perpetratorTableBody").innerHTML = "";
+        setTimeout(() => (_("#success-msg").style.display = "none"), 2000);
         clearFields(".reporting-field");
       } else if (data.status === "error") {
         throw new Error(data.message);

@@ -61,30 +61,35 @@ const table = new Tabulator("#table-container", {
       title: "Abuse Type",
       field: "abuse_type",
       width: 80,
+      headerFilter: "input",
     },
     {
       title: "State",
       field: "state",
       width: 80,
+      headerFilter: "input",
     },
     {
       title: "City",
       field: "city",
       width: 80,
+      headerFilter: "input",
     },
     {
       title: "Location",
       field: "location",
       hozAlign: "left",
       width: 150,
+      headerFilter: "input",
     },
-    { title: "Date", field: "event_date", width: 80 },
+    { title: "Date", field: "event_date", width: 80, headerFilter: "input" },
     {
       title: "Relevant Info",
       field: "other_info",
       // sorter: "date",
       // hozAlign: "center",
       width: 150,
+      headerFilter: "input",
     },
 
     {
@@ -95,6 +100,7 @@ const table = new Tabulator("#table-container", {
       editorParams: {
         values: CASE_STATUS,
       },
+      headerFilter: "input",
       width: 80,
       download: true,
       formatter: function (cell) {
@@ -146,72 +152,84 @@ const table = new Tabulator("#table-container", {
       title: "Perpetrator",
       field: "perpetrator_name",
       width: 150,
+      headerFilter: "input",
     },
 
     {
       title: "Age",
       field: "perpetrator_age",
       width: 40,
+      headerFilter: "input",
     },
 
     {
       title: "Gender",
       field: "perpetrator_gender",
       width: 60,
+      headerFilter: "input",
     },
 
     {
       title: "Contact",
       field: "perpetrator_contact",
       width: 150,
+      headerFilter: "input",
     },
 
     {
       title: "Victim",
       field: "victim_name",
       width: 150,
+      headerFilter: "input",
     },
 
     {
       title: "Age",
       field: "victim_age",
       width: 40,
+      headerFilter: "input",
     },
 
     {
       title: "Gender",
       field: "victim_gender",
       width: 60,
+      headerFilter: "input",
     },
 
     {
       title: "Contact",
       field: "victim_contact",
       width: 150,
+      headerFilter: "input",
     },
 
     {
       title: "Reporter",
       field: "reporter_name",
       width: 150,
+      headerFilter: "input",
     },
 
     {
       title: "Age",
       field: "reporter_age",
       width: 40,
+      headerFilter: "input",
     },
 
     {
       title: "Gender",
       field: "reporter_gender",
       width: 60,
+      headerFilter: "input",
     },
 
     {
       title: "Contact",
       field: "reporter_contact",
       width: 150,
+      headerFilter: "input",
     },
   ],
 });
