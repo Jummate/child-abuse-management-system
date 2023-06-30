@@ -26,6 +26,16 @@
       type="text/javascript"
       src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"
     ></script>
+
+    <!-- <link
+      href="./library/tabulator-master/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="./library/tabulator-master/dist/js/tabulator.min.js"
+    ></script> -->
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -52,9 +62,7 @@
           class="nav"
         >
           <div id="reporting-nav-logo-container">
-            <h2 id="reporting-nav-logo">
-              Welcome, <span id="admin-name">Admin</span>
-            </h2>
+            <h2 id="reporting-nav-logo">CAMS</h2>
           </div>
 
           <div id="reporting-nav-link-container">
@@ -79,14 +87,6 @@
                 >
               </li>
 
-              <!-- <li>
-                <a href="./admin-login.html"
-                  ><button class="btn btn-admin-login link">
-                    Sign In As Admin
-                  </button></a
-                >
-              </li> -->
-
               <li class="sign-out">
                 <a href="./index.html"
                   ><button class="btn btn-admin-login link btn-sign-out">
@@ -99,40 +99,460 @@
         </nav>
       </header>
       <main id="dashboard-body">
-        <div class="action-btn-container">
-          <select
-            name="export"
-            id="export"
-            class="select"
-          >
-            <option
-              value="Export"
-              disabled
-              selected
+        <div id="dashboard-body-wrapper">
+          <div class="action-btn-container">
+            <span
+              class="fa fa-filter icon"
+              id="filter"
             >
-              Export
-            </option>
-            <option value="csv">CSV</option>
-            <option value="pdf">PDF</option>
-          </select>
-          <!-- <button
-              class="btn"
-              id="export-csv"
+            </span>
+            <select
+              name="export"
+              id="export"
+              class="select"
             >
-              Export as CSV</button
-            ><button
-              class="btn"
-              id="export-pdf"
-            >
-              Export as PDF
-            </button> -->
-        </div>
-        <div id="table-container"></div>
-        <div id="chart-container">
-          <div id="mChart"></div>
-          <div id="yChart"></div>
+              <option
+                value="Export"
+                disabled
+                selected
+              >
+                Export
+              </option>
+              <option value="csv">CSV</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div>
+          <div id="table-container"></div>
+          <div id="chart-container">
+            <div
+              id="chart-actor-gender"
+              class="chart-item"
+            ></div>
+            <div
+              id="chart-abuse-type"
+              class="chart-item"
+            ></div>
+            <div
+              id="chart-case-status"
+              class="chart-item"
+            ></div>
+          </div>
         </div>
       </main>
+
+      <aside id="filter-container">
+        <div id="filter-wrapper">
+          <span
+            class="fa fa-times"
+            id="filter-close"
+          ></span>
+          <div class="filter-tag">
+            <label for="filter-select">Filter by:</label>
+            <select
+              name="filter-select"
+              id="filter-select"
+              class="select"
+            >
+              <option value="Abuse Type">Abuse Type</option>
+              <option value="State">State</option>
+              <option value="City">City</option>
+              <option value="Location">Location</option>
+              <option value="Date">Date</option>
+              <option value="Status">Status</option>
+              <option value="Gender">Gender</option>
+              <option value="Age">Age</option>
+            </select>
+          </div>
+
+          <div id="filter-selection-container">
+            <div
+              id="filter-abuse-type"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Abuse Type</h3>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="emotional"
+                    id="emotional"
+                    data-custom-id="emotional"
+                    value="Emotional"
+                  />
+                  <label for="emotional">Emotional</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="physical"
+                    id="physical"
+                    data-custom-id="physical"
+                    value="Physical"
+                  />
+                  <label for="physical">Physical</label>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    name="sexual"
+                    id="sexual"
+                    data-custom-id="sexual"
+                    value="Sexual"
+                  />
+                  <label for="sexual">Sexual</label>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    name="neglect"
+                    id="neglect"
+                    data-custom-id="neglect"
+                    value="Neglect"
+                  />
+                  <label for="Neglect">Neglect</label>
+                </li>
+              </ul>
+            </div>
+            <div
+              id="filter-state"
+              class="filter-item"
+            >
+              <h3 class="filter-title">State</h3>
+
+              <label for="filter-state-input">contains:</label>
+              <input
+                type="text"
+                name="filter-state-input"
+                id="filter-state-input"
+                data-custom-id="state"
+                class="input"
+                placeholder="Enter text to filter"
+              />
+              <button
+                type="button"
+                class="btn btn-add-filter"
+                id="add-filter-state"
+              >
+                Add
+              </button>
+            </div>
+
+            <div
+              id="filter-gender"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Gender</h3>
+
+              <ul class="actor">
+                <h4 class="sub-heading">Perpetrator</h4>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-male-perpetrator"
+                    id="filter-gender-male-perpetrator"
+                    data-custom-id="male"
+                    data-actor-class="perpetrator"
+                    value="Male"
+                  />
+                  Male
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-female-perpetrator"
+                    id="filter-gender-female-perpetrator"
+                    data-custom-id="female"
+                    data-actor-class="perpetrator"
+                    value="Female"
+                  />
+                  Female
+                </li>
+              </ul>
+
+              <ul class="actor">
+                <h4 class="sub-heading">Victim</h4>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-male-victim"
+                    id="filter-gender-male-victim"
+                    data-custom-id="male"
+                    data-actor-class="victim"
+                    value="Male"
+                  />
+                  Male
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-female-victim"
+                    id="filter-gender-female-victim"
+                    data-custom-id="female"
+                    data-actor-class="victim"
+                    value="Female"
+                  />
+                  Female
+                </li>
+              </ul>
+
+              <ul class="actor">
+                <h4 class="sub-heading">Reporter</h4>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-male-reporter"
+                    id="filter-gender-male-reporter"
+                    data-custom-id="male"
+                    data-actor-class="reporter"
+                    value="Male"
+                  />
+                  Male
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="filter-gender-female-reporter"
+                    id="filter-gender-female-reporter"
+                    data-custom-id="female"
+                    data-actor-class="reporter"
+                    value="Female"
+                  />
+                  Female
+                </li>
+              </ul>
+            </div>
+
+            <div
+              id="filter-city"
+              class="filter-item"
+            >
+              <h3 class="filter-title">City</h3>
+
+              <label for="filter-city-input">contains:</label>
+              <input
+                type="text"
+                name="filter-city-input"
+                id="filter-city-input"
+                data-custom-id="city"
+                class="input"
+                placeholder="Enter text to filter"
+              />
+              <button
+                type="button"
+                class="btn btn-add-filter"
+                id="add-filter-city"
+              >
+                Add
+              </button>
+            </div>
+
+            <div
+              id="filter-location"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Location</h3>
+
+              <label for="filter-location-input">contains:</label>
+              <input
+                type="text"
+                name="filter-location-input"
+                id="filter-location-input"
+                data-custom-id="location"
+                class="input"
+                placeholder="Enter text to filter"
+              />
+              <button
+                type="button"
+                class="btn btn-add-filter"
+                id="add-filter-location"
+              >
+                Add
+              </button>
+            </div>
+
+            <div
+              id="filter-status"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Status</h3>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="unaddressed"
+                    id="unaddressed"
+                    data-custom-id="unaddressed"
+                    value="Unaddressed"
+                  />
+                  <label for="unaddressed">Unaddressed</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="in-progress"
+                    id="in-progress"
+                    data-custom-id="InProgress"
+                    value="In-progress"
+                  />
+                  <label for="in-progress">In-progress</label>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    name="addressed"
+                    id="addressed"
+                    data-custom-id="addressed"
+                    value="Addressed"
+                  />
+                  <label for="addressed">Addressed</label>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              id="filter-age"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Age</h3>
+
+              <div class="actor">
+                <h4 class="sub-heading">Perpetrator</h4>
+                <select
+                  name="filter-age-operator-perpetrator"
+                  id="filter-age-operator-perpetrator"
+                  class="select"
+                >
+                  <option value="gteq">greater than or equals</option>
+                  <option value="eq">equals</option>
+                  <option value="lteq">less than or equals</option>
+                  <option value="lt">less than</option>
+                  <option value="gt">greater than</option>
+                </select>
+                <input
+                  type="number"
+                  name="filter-age-input-perpetrator"
+                  id="filter-age-input-perpetrator"
+                  class="input"
+                  placeholder="Enter a number"
+                />
+                <button
+                  type="button"
+                  class="btn btn-add-filter"
+                  id="add-filter-age-perpetrator"
+                  data-actor-class="perpetrator"
+                >
+                  Add
+                </button>
+              </div>
+
+              <div class="actor">
+                <h4 class="sub-heading">Victim</h4>
+                <select
+                  name="filter-age-operator-victim"
+                  id="filter-age-operator-victim"
+                  class="select"
+                >
+                  <option value="gteq">greater than or equals</option>
+                  <option value="eq">equals</option>
+                  <option value="lteq">less than or equals</option>
+                  <option value="lt">less than</option>
+                  <option value="gt">greater than</option>
+                </select>
+                <input
+                  type="number"
+                  name="filter-age-input-victim"
+                  id="filter-age-input-victim"
+                  class="input"
+                  placeholder="Enter a number"
+                />
+                <button
+                  type="button"
+                  class="btn btn-add-filter"
+                  id="add-filter-age-victim"
+                  data-actor-class="victim"
+                >
+                  Add
+                </button>
+              </div>
+
+              <div class="actor">
+                <h4 class="sub-heading">Reporter</h4>
+                <select
+                  name="filter-age-operator-reporter"
+                  id="filter-age-operator-reporter"
+                  class="select"
+                >
+                  <option value="gteq">greater than or equals</option>
+                  <option value="eq">equals</option>
+                  <option value="lteq">less than or equals</option>
+                  <option value="lt">less than</option>
+                  <option value="gt">greater than</option>
+                </select>
+                <input
+                  type="number"
+                  name="filter-age-input-reporter"
+                  id="filter-age-input-reporter"
+                  class="input"
+                  placeholder="Enter a number"
+                />
+                <button
+                  type="button"
+                  class="btn btn-add-filter"
+                  id="add-filter-age-reporter"
+                  data-actor-class="reporter"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="filter-date"
+              class="filter-item"
+            >
+              <h3 class="filter-title">Date</h3>
+
+              <select
+                name="filter-date-operator"
+                id="filter-date-operator"
+                class="select"
+              >
+                <option value="gteq">greater than or equals</option>
+                <option value="eq">equals</option>
+                <option value="lteq">less than or equals</option>
+                <option value="lt">less than</option>
+                <option value="gt">greater than</option>
+              </select>
+              <input
+                type="date"
+                name="filter-date-input"
+                id="filter-date-input"
+                class="input"
+                placeholder="Enter a number"
+              />
+              <button
+                type="button"
+                class="btn btn-add-filter"
+                id="add-filter-date"
+                data-custom-id="date"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <div id="filtered-item-container"></div>
+          <button
+            type="button"
+            class="btn"
+            id="btn-clear-filter"
+          >
+            Clear Filter
+          </button>
+        </div>
+      </aside>
 
       <!--        MENU ON MOBILE DEVICES      -->
       <aside id="menu-container">

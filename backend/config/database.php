@@ -1,11 +1,11 @@
 <?php
-// include_once("./constant.php");
+require_once("constant.php");
 class Database
 {
-    private $host = "localhost";
-    private $username = "root";
-    private $db_name = "cams_db";
-    private $password = "";
+    private $host = HOST;
+    private $username = USERNAME;
+    private $db_name = DB_NAME;
+    private $password = PASSWORD;
     private $dsn;
     public $conn;
 
@@ -17,13 +17,9 @@ class Database
     public function getConnection()
     {
         try {
-
             $this->conn = new PDO($this->dsn, $this->username, $this->password);
-
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            //$this->conn->exec("set names = 'utf-8'");
-
+            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch (PDOException $e) {
             echo "Error in connection: " . $e->getMessage();
         }

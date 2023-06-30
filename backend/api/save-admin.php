@@ -17,12 +17,12 @@ if ($db) {
     $data = json_decode(file_get_contents("php://input"));
     $user = new User($db);;
 
-    if ($user->saveCase($data)) {
+    if ($user->saveAdmin($data)) {
         http_response_code(201);
-        echo json_encode(array("status" => "success", "message" => "Case created successfully!"));
+        echo json_encode(array("status" => "success", "message" => "Record created successfully!"));
     } else {
         http_response_code(503);
-        echo json_encode(array("status" => "failure", "message" => "Unable to create case"));
+        echo json_encode(array("status" => "failure", "message" => "Unable to create record"));
     }
 } else {
     echo json_encode(array("status" => "error", "message" => "Oops! Database connection could not be established!"));

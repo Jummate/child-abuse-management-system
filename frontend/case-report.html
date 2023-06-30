@@ -25,6 +25,7 @@
   </head>
   <body>
     <section id="reporting">
+      <span id="success-msg">Saved successfully</span>
       <header
         id="reporting-header"
         class="header"
@@ -154,17 +155,13 @@
           </div>
         </div>
       </div>
-      <div id="reporting-page-container">
+      <main id="reporting-page-container">
         <fieldset class="fieldset">
           <legend>Case Info</legend>
           <div class="reporting-input-container">
             <div>
               <label for="abuse-type">Abuse Type</label><br />
-              <!-- <input
-                type="text"
-                class="input reporting-field"
-                id="abuse-type"
-              /> -->
+
               <select
                 name="abuse-type"
                 id="abuse-type"
@@ -192,13 +189,70 @@
             </div>
 
             <div>
-              <label for="location">Location</label><br />
-              <!-- <input
+              <label for="state">State</label><br />
+
+              <select
+                name="state"
+                id="state"
+                class="select reporting-field"
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                ></option>
+                <option value="Abia">Abia</option>
+                <option value="Adamawa">Adamawa</option>
+                <option value="Akwa-Ibom">Akwa-Ibom</option>
+                <option value="Anamabra">Anambra</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Bayelsa">Bayelsa</option>
+                <option value="Benue">Benue</option>
+                <option value="Borno">Borno</option>
+                <option value="Cross River">Cross River</option>
+                <option value="Delta">Delta</option>
+                <option value="Ebonyi">Ebonyi</option>
+                <option value="Edo">Edo</option>
+                <option value="Ekiti">Ekiti</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Imo">Imo</option>
+                <option value="Jigawa">Jigawa</option>
+                <option value="Kaduna">Kaduna</option>
+                <option value="Kano">Kano</option>
+                <option value="Katsina">Katsina</option>
+                <option value="Kebbi">Kebbi</option>
+                <option value="Kogi">Kogi</option>
+                <option value="Kwara">Kwara</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Nasarawa">Nasarawa</option>
+                <option value="Niger">Niger</option>
+                <option value="Ogun">Ogun</option>
+                <option value="Ondo">Ondo</option>
+                <option value="Osun">Osun</option>
+                <option value="Oyo">Oyo</option>
+                <option value="Plateau">Plateau</option>
+                <option value="Rivers">Rivers</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Taraba">Taraba</option>
+                <option value="Yobe">Yobe</option>
+                <option value="Zamfara">Zamfara</option>
+                <option value="FCT">FCT</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="city">City</label><br />
+              <input
                 type="text"
                 class="input reporting-field"
-                id="location"
-                placeholder="E.g 45, ABC street, Lambda, XYZ state, Nigeria"
-              /> -->
+                id="city"
+              />
+            </div>
+
+            <div>
+              <label for="location">Location</label><br />
+
               <textarea
                 id="location"
                 class="textarea reporting-field"
@@ -289,14 +343,12 @@
               Add Perpetrator
             </button>
           </div>
-          <!-- <div class="inn"> -->
           <div class="table-wrapper">
             <table>
               <thead>
                 <tr>
                   <th>S/N</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>Name</th>
                   <th>Age</th>
                   <th>Gender</th>
                   <th>Contact</th>
@@ -307,7 +359,6 @@
               <tbody id="perpetratorTableBody"></tbody>
             </table>
           </div>
-          <!-- </div> -->
         </div>
 
         <fieldset class="fieldset">
@@ -376,17 +427,7 @@
             SUBMIT
           </button>
         </div>
-        <!-- <div
-            id="case-info"
-            class="reporting-item"
-          >
-            hhhh
-          </div>
-          <div
-            id="case-info"
-            class="reporting-item"
-          ></div> -->
-      </div>
+      </main>
       <aside id="menu-container">
         <div id="menu-icon-container">
           <i

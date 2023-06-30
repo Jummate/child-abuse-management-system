@@ -1,5 +1,4 @@
 const BASE_URL = "http://localhost/child-abuse-management-system/src";
-const DASHBOARD_URL = `${BASE_URL}/frontend/dashboard.html`;
 const LOGIN_URL = `${BASE_URL}/backend/auth/login.php`;
 
 const _ = (elem) => document.querySelector(elem);
@@ -26,14 +25,6 @@ const validateSingleField = (field) => {
 
 const validateFields = (fields) => {
   return Array.from(all(fields)).every((field) => validateSingleField(field));
-  // let isNotEmpty = true;
-  // for (let field of Array.from(all(fields))) {
-  //   if (!validateSingleField(field)) {
-  //     isNotEmpty = false;
-  //     break;
-  //   }
-  // }
-  // return isNotEmpty;
 };
 
 const logAdminIn = () => {
@@ -53,7 +44,7 @@ const logAdminIn = () => {
         sessionStorage.setItem("isLoggedIn", true);
         window.location.href = document.referrer.includes("case-report")
           ? document.referrer
-          : DASHBOARD_URL;
+          : data.redirect_url;
       } else if (data.status === "error") {
         _(".error").style.display = "initial";
         _(".error").textContent = `Access denied! ${data.message}`;

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <!-- <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&family=Quicksand:wght@300&family=Secular+One&family=Montserrat+Alternates:wght@100;800&family=Saira:wght@100&family=Ysabeau:wght@200&family=Roboto+Mono:wght@200&family=Share+Tech+Mono&family=Ubuntu+Mono&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <title>Super Admin</title>
+  </head>
+  <body>
+    <section id="super-admin">
+      <header id="super-admin-header">
+        <div id="super-admin-logo-container">
+          <span id="super-admin-logo"><a href="./index.html">CAMS</a></span>
+          <span id="super-admin-text">
+            Welcome, <span id="admin-name">Admin</span>
+          </span>
+        </div>
+
+        <button class="btn btn-admin-login link btn-sign-out">Sign Out</button>
+      </header>
+
+      <main id="super-admin-body">
+        <section id="super-admin-home">
+          <div id="super-admin-home-wrapper">
+            <a
+              class="card"
+              href="http://localhost/child-abuse-management-system/src/frontend/"
+              >HOME</a
+            >
+            <a
+              class="card"
+              href="http://localhost/child-abuse-management-system/src/frontend/dashboard.html"
+              >DASHBOARD</a
+            >
+            <a
+              class="card"
+              href="http://localhost/child-abuse-management-system/src/frontend/case-report.html"
+              >REPORT CASE</a
+            >
+            <a
+              class="card"
+              href="#super-admin-admin"
+              >ADMIN DETAILS</a
+            >
+          </div>
+        </section>
+        <section id="super-admin-admin">
+          <button
+            class="btn"
+            id="add-admin"
+            data-open-modal
+          >
+            <i class="fa fa-plus"></i>
+            Add Admin
+          </button>
+          <dialog
+            data-modal
+            class="super-admin-modal"
+          >
+            <div id="super-admin-modal-wrapper">
+              <span
+                class="fa fa-times icon"
+                data-close-modal
+              ></span>
+              <em class="error">** This field cannot be empty **</em>
+              <div>
+                <label for="admin-username">Username</label>
+                <input
+                  type="text"
+                  name="admin-username"
+                  id="admin-username"
+                  class="input admin-field"
+                />
+              </div>
+              <div>
+                <label for="admin-password">Password</label>
+                <input
+                  type="text"
+                  name="admin-password"
+                  id="admin-password"
+                  class="input admin-field"
+                />
+              </div>
+              <div>
+                <label for="admin-role">Role</label>
+                <input
+                  type="text"
+                  name="admin-role"
+                  id="admin-role"
+                  class="input admin-field"
+                />
+              </div>
+
+              <button
+                type="button"
+                class="btn"
+                id="btn-save-admin"
+              >
+                Save
+              </button>
+            </div>
+          </dialog>
+          <div id="admins-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Username</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer id="super-admin-footer">
+        <p>Designed and Built by Omololu Jumat &copy; 2023</p>
+      </footer>
+    </section>
+    <script src="./super-admin.js"></script>
+  </body>
+</html>
