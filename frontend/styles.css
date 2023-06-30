@@ -922,9 +922,13 @@ tr:nth-child(even) {
   gap: 20px;
   position: absolute;
   left: 50%;
-  top: 40%;
-  transform: translate(-50%, -60%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 20px;
+  background-color: var(--white);
+  width: 100%;
+  max-width: 500px;
+  font-size: var(--fs-para);
 }
 [data-close-modal] {
   display: block;
