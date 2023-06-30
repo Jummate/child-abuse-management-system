@@ -50,8 +50,8 @@ _("#perpetratorTableBody").addEventListener("click", (event) => {
       (item) => Number(item.ID) === Number(idOfRecordToEdit)
     );
 
-    _("#perpetrator-first-name").value = recordToEdit.fname;
-    _("#perpetrator-last-name").value = recordToEdit.lname;
+    _("#perpetrator-first-name").value = recordToEdit.name.split(" ")[0];
+    _("#perpetrator-last-name").value = recordToEdit.name.split(" ")[1];
     _("#perpetrator-age").value = recordToEdit.age;
     _("#perpetrator-gender").value = recordToEdit.gender;
     _("#perpetrator-contact").value = recordToEdit.contact;
