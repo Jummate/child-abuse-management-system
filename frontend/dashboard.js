@@ -54,6 +54,7 @@ const table = new Tabulator("#table-container", {
 
   layout: "fitColumns", //fit columns to width of table (optional)
   pagination: true,
+  placeholder: () => "<p style='margin-left:-1500px;'>No Data Available</p>",
   columns: [
     //Define Table Columns
 
@@ -615,6 +616,9 @@ const genderChartOptions = {
       fontSize: "12px",
     },
   },
+  noData: {
+    text: "No data available yet",
+  },
 
   plotOptions: {
     bar: {
@@ -662,35 +666,15 @@ const abuseChartOptions = {
       fontSize: "12px",
     },
   },
+  noData: {
+    text: "No data available yet",
+  },
+
   legend: {
     position: "bottom",
   },
 
   labels: [],
-  // responsive: [
-  //   {
-  //     breakpoint: 480,
-  //     options: {
-  //       chart: {
-  //         width: 380,
-  //       },
-  //       legend: {
-  //         position: "bottom",
-  //       },
-  //     },
-  //   },
-  //   {
-  //     breakpoint: 320,
-  //     options: {
-  //       chart: {
-  //         width: 300,
-  //       },
-  //       legend: {
-  //         position: "bottom",
-  //       },
-  //     },
-  //   },
-  // ],
 };
 
 const abuseTypeChart = new ApexCharts(
@@ -713,34 +697,14 @@ const caseChartOptions = {
       fontSize: "12px",
     },
   },
+  noData: {
+    text: "No data available yet",
+  },
+
   legend: {
     position: "bottom",
   },
   labels: [],
-  responsive: [
-    // {
-    //   breakpoint: 480,
-    //   options: {
-    //     chart: {
-    //       width: 380,
-    //     },
-    //     legend: {
-    //       position: "bottom",
-    //     },
-    //   },
-    // },
-    // {
-    //   breakpoint: 280,
-    //   options: {
-    //     chart: {
-    //       width: 280,
-    //     },
-    //     legend: {
-    //       position: "bottom",
-    //     },
-    //   },
-    // },
-  ],
 };
 
 const caseStatusChart = new ApexCharts(
