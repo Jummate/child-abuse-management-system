@@ -1,3 +1,6 @@
+const BASE_URL = "http://localhost/child-abuse-management-system";
+const HOME_URL = BASE_URL;
+
 const _ = (elem) => document.querySelector(elem);
 
 const all = (elements) => document.querySelectorAll(elements);
@@ -25,5 +28,6 @@ window.addEventListener("click", (event) => {
     [...all(".sign-out")].forEach((elem) => (elem.style.display = "none"));
     [...all(".sign-in")].forEach((elem) => (elem.style.display = "initial"));
     [...all(".protected")].forEach((elem) => (elem.style.display = "none"));
+    _("#menu-container").style.display = "none";
   }
 });

@@ -1,8 +1,8 @@
-const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const BASE_URL = "http://localhost/child-abuse-management-system";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
 const UPDATE_CASE_URL = `${BASE_URL}/backend/api/update-case.php`;
 const ALL_CASES_URL = `${BASE_URL}/backend/api/cases.php`;
-const HOME_URL = `${BASE_URL}/frontend/`;
+const HOME_URL = BASE_URL;
 const _ = (elem) => document.querySelector(elem);
 const all = (elements) => document.querySelectorAll(elements);
 const CASE_STATUS = ["Unaddressed", "In Progress", "Addressed"];

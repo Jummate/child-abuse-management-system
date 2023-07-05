@@ -1,6 +1,6 @@
-const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const BASE_URL = "http://localhost/child-abuse-management-system";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
-const HOME_URL = `${BASE_URL}/frontend/`;
+const HOME_URL = BASE_URL;
 const SAVE_ADMIN_URL = `${BASE_URL}/backend/api/save-admin.php`;
 const DELETE_ADMIN_URL = `${BASE_URL}/backend/api/delete-admin.php`;
 

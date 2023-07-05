@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const BASE_URL = "http://localhost/child-abuse-management-system";
 const LOGIN_URL = `${BASE_URL}/backend/auth/login.php`;
 
 const _ = (elem) => document.querySelector(elem);

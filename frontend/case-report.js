@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost/child-abuse-management-system/src";
+const BASE_URL = "http://localhost/child-abuse-management-system";
 const ADMIN_LOGIN_URL = `${BASE_URL}/frontend/admin-login.html`;
 const HOME_URL = `${BASE_URL}/frontend/`;
 const SAVE_CASE_URL = `${BASE_URL}/backend/api/save-case.php`;
@@ -147,11 +147,10 @@ const collectEachInfo = (actor) => {
   return actor === "perpetrator" ? { ID, ...info } : info;
 };
 
-const collectGeneralCaseInfo = () => {
-  let generatedID = crypto.randomUUID();
-  generatedID = generatedID.split("-");
-  generatedID = generatedID[0] + generatedID[1];
+const generateRandomID = () => Math.random().toString().replace(".", "");
 
+const collectGeneralCaseInfo = () => {
+  let generatedID = generateRandomID();
   return {
     caseID: generatedID,
     case: collectCaseInfo(),
